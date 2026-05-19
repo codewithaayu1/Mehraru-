@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rashi ke Naam ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--rose:#e8395a;--deep:#1a0a0f;--gold:#f4c842;--cream:#fff4f7;--pink:#ffb3c6;--text:#2a0a15;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--deep);min-height:100vh;overflow-x:hidden;font-family:'Caveat',cursive;}
+
+/* PETALS */
+.petal{position:fixed;border-radius:50% 0 50% 0;opacity:.7;animation:fall linear infinite;pointer-events:none;z-index:0;}
+@keyframes fall{0%{transform:translateY(-20px) rotate(0deg);opacity:.8}100%{transform:translateY(110vh) rotate(360deg);opacity:0}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at 50% 30%,#3d0a1a 0%,#1a0a0f 70%);position:relative;padding:40px 20px;text-align:center;}
+.crown{font-size:3rem;animation:float 3s ease-in-out infinite;margin-bottom:10px;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,8vw,5rem);font-style:italic;
+  color:var(--gold);animation:glow 2s ease-in-out infinite alternate;line-height:1.1;}
+@keyframes glow{from{text-shadow:0 0 20px rgba(244,200,66,.4)}to{text-shadow:0 0 60px rgba(244,200,66,.9),0 0 100px rgba(232,57,90,.4)}}
+.hero-sub{font-size:clamp(1.2rem,4vw,2rem);color:var(--pink);margin-top:8px;}
+.scroll-hint{margin-top:40px;color:var(--rose);font-size:.9rem;letter-spacing:2px;text-transform:uppercase;animation:bounce 1.5s ease-in-out infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* HEART TAP */
+.heart-sec{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at 50% 40%,#3d0a1a 0%,#1a0a0f 70%);position:relative;}
+.heart-hint{font-size:1.5rem;color:var(--pink);margin-bottom:30px;animation:float 2s ease-in-out infinite;}
+.heart-wrap{position:relative;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;}
+.big-heart{font-size:9rem;display:block;filter:drop-shadow(0 0 30px rgba(232,57,90,.7));
+  animation:hbeat 1.4s ease-in-out infinite;transition:transform .1s;}
+@keyframes hbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.12)}28%{transform:scale(1)}42%{transform:scale(1.08)}56%{transform:scale(1)}}
+.burst-cv{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;width:300px;height:300px;}
+.tap-count{margin-top:24px;font-size:1.2rem;color:var(--gold);min-height:30px;text-align:center;}
+
+/* LETTER */
+.letter-sec{background:linear-gradient(180deg,#1a0a0f 0%,#2a0510 100%);padding:60px 20px;display:flex;justify-content:center;}
+.letter-card{max-width:680px;width:100%;background:var(--cream);border-radius:4px;padding:50px 40px;position:relative;
+  box-shadow:0 0 80px rgba(232,57,90,.3),0 30px 60px rgba(0,0,0,.5);border-top:6px solid var(--rose);}
+.letter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:100%;
+  background:repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(232,57,90,.08) 28px);pointer-events:none;}
+.letter-stamp{position:absolute;top:20px;right:20px;width:60px;height:70px;border:2px solid var(--rose);
+  display:flex;align-items:center;justify-content:center;font-size:1.8rem;transform:rotate(8deg);}
+.letter-date{color:#888;font-size:1rem;margin-bottom:20px;}
+.letter-greeting{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,4vw,2rem);font-style:italic;color:var(--rose);margin-bottom:24px;}
+.letter-body{font-size:1.05rem;line-height:2;color:var(--text);font-family:'Playfair Display',serif;}
+.letter-body p{margin-bottom:18px;opacity:0;transform:translateY(15px);transition:all .6s ease;}
+.letter-body p.vis{opacity:1;transform:translateY(0);}
+.hl{color:var(--rose);font-style:italic;font-weight:700;}
+.letter-sign{margin-top:30px;font-size:1.6rem;color:var(--rose);text-align:right;}
+.back-btn{display:block;margin:20px auto 0;background:none;border:1px solid var(--rose);color:var(--rose);
+  padding:8px 20px;border-radius:20px;font-family:'Caveat',cursive;font-size:1rem;cursor:pointer;}
+@media(max-width:480px){.letter-card{padding:30px 22px;}}
+
+/* OVERLAY PAGES */
+.ov{display:none;position:fixed;inset:0;z-index:5000;flex-direction:column;align-items:center;
+  justify-content:center;padding:20px;overflow:hidden;}
+.ov.on{display:flex;}
+.pg-x{position:absolute;top:16px;left:16px;background:none;border:none;font-size:1.6rem;cursor:pointer;opacity:.7;color:#fff;z-index:10;}
+
+/* MUSIC PAGE */
+.music-ov{background:linear-gradient(135deg,#1a0a0f,#0d0510);}
+.mp-hdr{width:100%;padding:16px 20px;display:flex;align-items:center;gap:14px;
+  background:rgba(0,0,0,.3);border-bottom:1px solid rgba(232,57,90,.2);}
+.mp-name{font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem;color:var(--gold);flex:1;}
+.vinyl{width:150px;height:150px;border-radius:50%;flex-shrink:0;margin-top:14px;
+  background:radial-gradient(circle,#111 0%,#111 20%,#1a0000 22%,#e8395a 30%,#111 35%,#e8395a 40%,#111 45%,#e8395a 50%,#111 55%,#e8395a 60%,#111 65%,#222 70%);
+  box-shadow:0 0 40px rgba(232,57,90,.4);animation:spin 4s linear infinite paused;}
+.vinyl.pl{animation-play-state:running;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.playbtn{margin-top:12px;background:linear-gradient(135deg,#e8395a,#c2185b);border:none;color:#fff;
+  width:50px;height:50px;border-radius:50%;font-size:1.4rem;cursor:pointer;flex-shrink:0;}
+.lyr-area{flex:1;width:100%;padding:14px 10px 40px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;}
+.ll{font-size:1.2rem;color:rgba(255,200,220,.5);text-align:center;padding:11px 22px;border-radius:40px;
+  cursor:pointer;transition:all .4s cubic-bezier(.34,1.56,.64,1);border:1px solid transparent;}
+.ll.act{color:#fff;font-size:1.45rem;font-weight:700;padding-left:42px;
+  background:linear-gradient(135deg,rgba(232,57,90,.35),rgba(244,200,66,.15));
+  border-color:rgba(232,57,90,.5);box-shadow:0 0 22px rgba(232,57,90,.3);transform:scale(1.03);}
+.ll.act::before{content:'♪';position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--rose);animation:lp .8s ease-in-out infinite;}
+.ll{position:relative;}
+.ll.dn{color:rgba(255,180,200,.25);text-decoration:line-through;text-decoration-color:rgba(232,57,90,.3);}
+@keyframes lp{0%,100%{opacity:1;transform:translateY(-50%) scale(1)}50%{opacity:.5;transform:translateY(-50%) scale(1.3)}}
+
+/* FABs */
+.fab{width:52px;height:52px;border-radius:50%;border:none;font-size:1.6rem;cursor:pointer;
+  box-shadow:0 4px 16px rgba(0,0,0,.5);transition:transform .18s;display:flex;align-items:center;justify-content:center;}
+.fab:active{transform:scale(.85);}
+.fopt{width:46px;height:46px;border-radius:50%;border:2px solid rgba(255,255,255,.25);background:rgba(20,5,15,.9);
+  font-size:1.35rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:transform .18s;box-shadow:0 3px 12px rgba(0,0,0,.4);}
+.fopt:active{transform:scale(1.15);}
+.frow{display:flex;gap:8px;}
+
+/* MASTER FAB */
+.master-btn{
+  width:60px;height:60px;border-radius:50%;border:none;font-size:1.9rem;cursor:pointer;
+  background:linear-gradient(135deg,#e8395a,#7c3aed);
+  box-shadow:0 4px 24px rgba(232,57,90,.5),0 0 0 3px rgba(255,255,255,.1);
+  transition:transform .2s,box-shadow .2s;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;z-index:2;
+}
+.master-btn-left{background:linear-gradient(135deg,#f4c842,#ec4899);}
+.master-btn:active{transform:scale(.88);}
+.master-btn.open{transform:rotate(45deg);}
+
+.master-panel{
+  background:rgba(10,2,18,.95);
+  border:1.5px solid rgba(255,255,255,.12);
+  border-radius:20px;
+  padding:14px 14px 10px;
+  margin-bottom:12px;
+  display:flex;flex-direction:column;gap:10px;
+  backdrop-filter:blur(16px);
+  box-shadow:0 8px 32px rgba(0,0,0,.6);
+  max-height:0;overflow:hidden;opacity:0;
+  transition:max-height .4s cubic-bezier(.34,1.56,.64,1),opacity .3s ease,padding .3s;
+  pointer-events:none;
+  align-items:flex-end;
+}
+.master-panel-left{align-items:flex-start;}
+.master-panel.on{max-height:600px;opacity:1;pointer-events:all;padding:14px 14px 10px;}
+.master-panel-title{
+  font-family:'Caveat',cursive;font-size:1rem;
+  color:rgba(255,255,255,.5);letter-spacing:1px;text-transform:uppercase;
+}
+.master-sub-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;}
+
+/* Feature grid inside left master */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.feat-btn{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  width:72px;padding:10px 6px;border-radius:16px;border:none;cursor:pointer;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  transition:background .2s,transform .15s;
+}
+.feat-btn:active{transform:scale(.88);background:rgba(255,255,255,.14);}
+.feat-em{font-size:1.8rem;line-height:1;}
+.feat-lbl{font-family:'Caveat',cursive;font-size:.8rem;color:rgba(255,255,255,.7);}
+
+/* CUTE POPUP */
+.cute-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:7000;
+  align-items:center;justify-content:center;backdrop-filter:blur(6px);}
+.cute-ov.on{display:flex;}
+.cute-card{background:linear-gradient(135deg,#1a0a0f,#2d0a1a);border:2px solid rgba(232,57,90,.5);
+  border-radius:28px;padding:36px 28px 28px;max-width:320px;width:88%;text-align:center;position:relative;
+  box-shadow:0 0 60px rgba(232,57,90,.3);animation:popIn .4s cubic-bezier(.34,1.56,.64,1);overflow:hidden;}
+@keyframes popIn{from{transform:scale(.4) translateY(60px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+.cute-em{font-size:4rem;display:block;margin-bottom:14px;animation:wig .7s ease-in-out infinite alternate;}
+@keyframes wig{from{transform:rotate(-10deg) scale(1)}to{transform:rotate(10deg) scale(1.12)}}
+.cute-msg{font-size:1.3rem;color:#ffe0ea;line-height:1.75;margin-bottom:22px;}
+.cute-msg .hg{color:var(--gold);font-weight:700;}
+.cute-msg .hr{color:#ff7096;font-weight:700;}
+.cute-close{background:linear-gradient(135deg,#e8395a,#c2185b);border:none;color:#fff;
+  padding:11px 28px;border-radius:30px;font-size:1.1rem;cursor:pointer;font-family:'Caveat',cursive;}
+.conf-wrap{position:absolute;inset:0;pointer-events:none;border-radius:28px;overflow:hidden;}
+
+/* PROPOSAL */
+.prop-ov{background:radial-gradient(ellipse at 50% 30%,#2a0010,#0d0008);}
+.ring-wrap{position:relative;cursor:pointer;margin-bottom:8px;}
+.rbox{font-size:8rem;display:block;filter:drop-shadow(0 0 30px rgba(244,200,66,.6));
+  animation:bfloat 2.5s ease-in-out infinite;}
+@keyframes bfloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-14px) rotate(3deg)}}
+.rgem{position:absolute;top:-10px;left:50%;transform:translateX(-50%) scale(0);font-size:3.5rem;
+  transition:all .6s cubic-bezier(.34,1.56,.64,1);filter:drop-shadow(0 0 20px rgba(244,200,66,.9));}
+.rgem.sh{transform:translateX(-50%) translateY(-60px) scale(1);}
+.phint{font-size:1rem;color:rgba(255,180,200,.5);margin-bottom:20px;animation:blink 1.5s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:.5}50%{opacity:1}}
+.pq{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.3rem,5vw,1.9rem);
+  color:var(--gold);text-align:center;line-height:1.5;margin:14px 0 6px;
+  opacity:0;transform:translateY(20px);transition:all .6s ease .3s;}
+.pq.sh{opacity:1;transform:translateY(0);}
+.psub{font-size:1.1rem;color:var(--pink);text-align:center;margin-bottom:22px;opacity:0;transition:opacity .5s ease .6s;}
+.psub.sh{opacity:1;}
+.pbtns{display:flex;gap:14px;opacity:0;transition:opacity .5s ease .8s;}
+.pbtns.sh{opacity:1;}
+.byes{background:linear-gradient(135deg,#27ae60,#1a7a42);border:none;color:#fff;padding:13px 28px;
+  border-radius:40px;font-family:'Caveat',cursive;font-size:1.3rem;cursor:pointer;}
+.bno{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);
+  padding:13px 24px;border-radius:40px;font-family:'Caveat',cursive;font-size:1.3rem;cursor:pointer;transition:transform .15s;}
+.presp{display:none;flex-direction:column;align-items:center;text-align:center;animation:popIn .5s cubic-bezier(.34,1.56,.64,1);}
+.presp.sh{display:flex;}
+.presp-em{font-size:5rem;margin-bottom:10px;}
+.presp-t{font-family:'Playfair Display',serif;font-style:italic;font-size:1.6rem;color:var(--gold);margin-bottom:6px;}
+.presp-s{font-size:1.1rem;color:var(--pink);}
+.fw-cv{position:fixed;inset:0;pointer-events:none;z-index:6000;display:none;}
+.fw-cv.on{display:block;}
+
+/* ROAST */
+.roast-ov{background:radial-gradient(ellipse at 50% 30%,#1a0a00,#0d0800);}
+.rtitle{font-family:'Playfair Display',serif;font-size:2rem;font-style:italic;color:#ff6b35;margin-bottom:4px;}
+.rsub{font-size:1rem;color:rgba(255,200,150,.6);margin-bottom:22px;}
+.rcard{background:linear-gradient(135deg,rgba(255,107,53,.12),rgba(244,200,66,.06));
+  border:1.5px solid rgba(255,107,53,.35);border-radius:24px;padding:26px 22px;max-width:320px;width:100%;
+  text-align:center;min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.rfire{font-size:2.5rem;margin-bottom:10px;animation:fw .4s ease-in-out infinite alternate;}
+@keyframes fw{from{transform:rotate(-5deg) scale(1)}to{transform:rotate(5deg) scale(1.1)}}
+.rtxt{font-size:1.25rem;color:#ffe0c8;line-height:1.7;transition:opacity .3s;}
+.rtxt.fd{opacity:0;}
+.rbtn{margin-top:22px;background:linear-gradient(135deg,#ff6b35,#e65100);border:none;color:#fff;
+  padding:12px 34px;border-radius:40px;font-size:1.2rem;cursor:pointer;font-family:'Caveat',cursive;}
+.rcnt{margin-top:10px;font-size:.9rem;color:rgba(255,200,150,.5);}
+
+/* PHOTO WALL */
+.photo-ov{background:#0a0010;justify-content:flex-start;overflow-y:auto;}
+.phdr{width:100%;padding:14px 18px;display:flex;align-items:center;gap:14px;
+  background:rgba(168,85,247,.15);border-bottom:1px solid rgba(168,85,247,.25);
+  position:sticky;top:0;z-index:10;backdrop-filter:blur(10px);}
+.ptitle{font-family:'Playfair Display',serif;font-style:italic;color:#e9d5ff;font-size:1.3rem;flex:1;}
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:14px;width:100%;max-width:480px;}
+.pcard{border-radius:16px;overflow:hidden;background:rgba(168,85,247,.1);
+  border:1.5px solid rgba(168,85,247,.25);aspect-ratio:1;display:flex;align-items:center;
+  justify-content:center;flex-direction:column;gap:8px;cursor:pointer;transition:transform .2s;}
+.pcard:active{transform:scale(.94);}
+.pcard img{width:100%;height:100%;object-fit:cover;}
+.pph{font-size:2.5rem;}
+.plbl{font-size:.9rem;color:rgba(233,213,255,.6);text-align:center;padding:0 8px;}
+.lb{display:none;position:fixed;inset:0;z-index:8000;background:rgba(0,0,0,.93);
+  align-items:center;justify-content:center;flex-direction:column;backdrop-filter:blur(8px);}
+.lb.on{display:flex;}
+.lb img{max-width:90vw;max-height:70vh;border-radius:12px;}
+.lb-cap{font-size:1.2rem;color:#e9d5ff;margin-top:14px;}
+.lb-x{position:absolute;top:18px;right:18px;background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer;}
+
+/* SECRET */
+.secret-ov{background:radial-gradient(ellipse at 50% 30%,#001a2a,#000d18);}
+.slk{font-size:5rem;margin-bottom:8px;animation:lkp 1.5s ease-in-out infinite;}
+@keyframes lkp{0%,100%{filter:drop-shadow(0 0 10px rgba(6,182,212,.4))}50%{filter:drop-shadow(0 0 30px rgba(6,182,212,.9))}}
+.stitle{font-family:'Playfair Display',serif;font-style:italic;font-size:1.8rem;color:#67e8f9;margin-bottom:6px;}
+.shint{font-size:1rem;color:rgba(103,232,249,.5);margin-bottom:20px;}
+.sdots{display:flex;gap:12px;margin-bottom:20px;}
+.sd{width:14px;height:14px;border-radius:50%;background:rgba(6,182,212,.2);border:2px solid rgba(6,182,212,.4);transition:background .2s;}
+.sd.fl{background:#06b6d4;box-shadow:0 0 10px rgba(6,182,212,.7);}
+.sd.wr{background:#ef4444;box-shadow:0 0 10px rgba(239,68,68,.7);}
+.spad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:240px;width:100%;}
+.sk{height:56px;border-radius:14px;background:rgba(6,182,212,.1);border:1.5px solid rgba(6,182,212,.25);
+  color:#67e8f9;font-size:1.4rem;font-family:'Caveat',cursive;cursor:pointer;transition:all .15s;}
+.sk:active{background:rgba(6,182,212,.35);transform:scale(.92);}
+.sk.del{color:#f87171;border-color:rgba(248,113,113,.3);}
+.srev{display:none;text-align:center;animation:popIn .5s cubic-bezier(.34,1.56,.64,1);}
+.srev.on{display:block;}
+.srev-msg{font-size:1.2rem;color:#e0f7ff;line-height:1.8;}
+.sreset{margin-top:16px;background:none;border:1px solid #06b6d4;color:#06b6d4;
+  padding:10px 22px;border-radius:30px;font-family:'Caveat',cursive;font-size:1rem;cursor:pointer;}
+
+/* SPIN */
+.spin-ov{background:radial-gradient(ellipse at 50% 30%,#1a0020,#0d0015);}
+.sptitle{font-family:'Playfair Display',serif;font-style:italic;font-size:1.8rem;color:#f9a8d4;margin-bottom:4px;}
+.spsub{font-size:1rem;color:rgba(249,168,212,.5);margin-bottom:18px;}
+.whl-wrap{position:relative;width:270px;height:270px;margin-bottom:14px;}
+.wptr{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:2rem;z-index:2;
+  filter:drop-shadow(0 0 8px rgba(244,200,66,.8));}
+#wCanvas{border-radius:50%;box-shadow:0 0 40px rgba(236,72,153,.4);}
+.spbtn{background:linear-gradient(135deg,#ec4899,#be185d);border:none;color:#fff;
+  padding:13px 38px;border-radius:40px;font-size:1.3rem;cursor:pointer;font-family:'Caveat',cursive;}
+.spbtn:disabled{opacity:.5;cursor:not-allowed;}
+.spres{margin-top:14px;font-size:1.3rem;color:#f9a8d4;text-align:center;min-height:30px;}
+/* MOOD PAGES */
+.mood-ov{padding:20px;}
+
+/* ══ SORRY LETTER ══ */
+.sorry-ov{background:radial-gradient(ellipse at 50% 30%,#1a0a2a,#08040f);overflow-y:auto;justify-content:flex-start;padding:20px;}
+.sorry-hdr{width:100%;display:flex;align-items:center;gap:12px;margin-bottom:18px;position:sticky;top:0;z-index:10;background:rgba(10,4,20,.85);backdrop-filter:blur(10px);padding:10px 0;}
+.sorry-card{background:linear-gradient(135deg,#fff8ff,#fff0f5);border-radius:20px;padding:28px 22px;max-width:400px;width:100%;box-shadow:0 0 60px rgba(168,85,247,.3),0 20px 40px rgba(0,0,0,.5);border-top:5px solid #a855f7;position:relative;overflow:hidden;}
+.sorry-card::before{content:'';position:absolute;top:0;left:0;right:0;height:100%;background:repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(168,85,247,.07) 28px);pointer-events:none;}
+.sorry-loading{display:flex;flex-direction:column;align-items:center;gap:14px;padding:30px;color:#a855f7;}
+.sorry-spinner{width:44px;height:44px;border:3px solid rgba(168,85,247,.2);border-top-color:#a855f7;border-radius:50%;animation:spin 1s linear infinite;}
+.sorry-text{font-family:'Playfair Display',serif;font-size:1.05rem;color:#2a0a15;line-height:1.95;white-space:pre-wrap;}
+.sorry-sign{margin-top:20px;font-size:1.4rem;color:#a855f7;text-align:right;font-family:'Caveat',cursive;}
+.sorry-gen-btn{margin-top:16px;background:linear-gradient(135deg,#a855f7,#7c3aed);border:none;color:#fff;padding:12px 30px;border-radius:30px;font-family:'Caveat',cursive;font-size:1.1rem;cursor:pointer;display:block;width:100%;}
+.sorry-title{font-family:'Playfair Display',serif;font-style:italic;font-size:1.7rem;color:#c084fc;flex:1;}
+
+/* ══ AI THERAPIST ══ */
+.therapy-ov{background:radial-gradient(ellipse at 50% 30%,#001a10,#000a08);flex-direction:column;overflow:hidden;padding:0;}
+.therapy-hdr{width:100%;display:flex;align-items:center;gap:12px;padding:14px 20px 10px;background:rgba(0,15,8,.95);border-bottom:1px solid rgba(52,211,153,.15);flex-shrink:0;}
+.therapy-title{font-family:'Playfair Display',serif;font-style:italic;font-size:1.6rem;color:#34d399;flex:1;}
+.therapy-moods-wrap{width:100%;padding:12px 20px 0;flex-shrink:0;}
+.therapy-subtitle{font-family:'Caveat',cursive;font-size:.95rem;color:rgba(52,211,153,.5);margin-bottom:10px;text-align:center;}
+.therapy-moods{display:flex;flex-wrap:wrap;gap:8px;max-width:400px;width:100%;margin:0 auto;}
+.therapy-mood-btn{flex:1;min-width:90px;padding:10px 8px;border-radius:14px;border:1.5px solid rgba(52,211,153,.3);background:rgba(52,211,153,.08);color:#34d399;font-family:'Caveat',cursive;font-size:1rem;cursor:pointer;transition:all .2s;}
+.therapy-mood-btn:active{background:rgba(52,211,153,.25);transform:scale(.94);}
+.therapy-mood-btn.sel{background:rgba(52,211,153,.28);border-color:#34d399;box-shadow:0 0 14px rgba(52,211,153,.3);}
+.therapy-scroll{flex:1;overflow-y:auto;padding:14px 20px;display:flex;flex-direction:column;align-items:center;}
+.therapy-bubble{background:linear-gradient(135deg,rgba(52,211,153,.12),rgba(16,185,129,.06));border:1.5px solid rgba(52,211,153,.3);border-radius:20px;padding:22px 20px;max-width:400px;width:100%;position:relative;}
+.therapy-text{font-family:'Caveat',cursive;font-size:1.15rem;color:rgba(255,255,255,.9);line-height:1.85;white-space:pre-wrap;}
+.therapy-spinner{width:36px;height:36px;border:3px solid rgba(52,211,153,.2);border-top-color:#34d399;border-radius:50%;animation:spin 1s linear infinite;margin:20px auto;}
+.therapy-btn-wrap{width:100%;padding:12px 20px 20px;background:rgba(0,15,8,.95);border-top:1px solid rgba(52,211,153,.1);display:flex;justify-content:center;flex-shrink:0;}
+.therapy-talk-btn{background:linear-gradient(135deg,#10b981,#065f46);border:none;color:#fff;padding:13px 40px;border-radius:30px;font-family:'Caveat',cursive;font-size:1.15rem;cursor:pointer;width:100%;max-width:340px;}
+
+/* ══ SLIDESHOW ══ */
+.slide-ov{background:#000;align-items:center;justify-content:center;}
+.slide-frame{position:relative;width:100%;max-width:400px;height:65vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.slide-item{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .8s ease,transform .8s ease;transform:scale(.96);}
+.slide-item.on{opacity:1;transform:scale(1);}
+.slide-em{font-size:7rem;animation:float 2.5s ease-in-out infinite;}
+.slide-cap{font-size:1.2rem;color:rgba(255,255,255,.85);margin-top:16px;text-align:center;padding:0 20px;}
+.slide-controls{display:flex;gap:16px;margin-top:16px;align-items:center;}
+.slide-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.slide-btn:active{background:rgba(255,255,255,.28);transform:scale(.88);}
+.slide-play-btn{background:linear-gradient(135deg,#e8395a,#a855f7);border:none;color:#fff;width:52px;height:52px;border-radius:50%;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.slide-counter{color:rgba(255,255,255,.5);font-size:.95rem;min-width:50px;text-align:center;}
+.slide-dots{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;justify-content:center;max-width:300px;}
+.slide-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);transition:all .3s;cursor:pointer;}
+.slide-dot.on{background:#e8395a;transform:scale(1.3);}
+.slide-title{font-family:'Playfair Display',serif;font-style:italic;color:#f4c842;font-size:1.4rem;margin-bottom:8px;text-align:center;}
+
+/* ══ COMPLIMENT MACHINE ══ */
+.comp-ov{background:radial-gradient(ellipse at 50% 40%,#1a0a1a,#09040e);}
+.comp-title{font-family:'Playfair Display',serif;font-style:italic;font-size:2rem;color:#f4c842;margin-bottom:6px;text-align:center;}
+.comp-sub{font-size:1rem;color:rgba(244,200,66,.5);margin-bottom:24px;text-align:center;}
+.comp-card{background:linear-gradient(135deg,rgba(244,200,66,.12),rgba(232,57,90,.08));border:2px solid rgba(244,200,66,.3);border-radius:24px;padding:28px 22px;max-width:340px;width:100%;text-align:center;min-height:130px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.comp-star{font-size:2.5rem;position:absolute;top:12px;right:14px;animation:wig .8s ease-in-out infinite alternate;}
+.comp-text{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:#fff8e7;line-height:1.7;opacity:1;transition:opacity .3s;}
+.comp-text.fd{opacity:0;}
+.comp-tap-btn{margin-top:22px;background:linear-gradient(135deg,#f4c842,#e8395a);border:none;color:#fff;padding:14px 40px;border-radius:40px;font-size:1.3rem;cursor:pointer;font-family:'Caveat',cursive;box-shadow:0 4px 20px rgba(244,200,66,.4);}
+.comp-tap-btn:active{transform:scale(.92);}
+.comp-cnt{margin-top:10px;font-size:.9rem;color:rgba(244,200,66,.4);}
+.comp-loading{font-size:1rem;color:#f4c842;opacity:.7;}
+
+/* ══ VIRTUAL HUG ══ */
+.hug-ov{background:radial-gradient(ellipse at 50% 40%,#1a0a10,#0a0508);}
+.hug-title{font-family:'Playfair Display',serif;font-style:italic;font-size:2rem;color:#ffb3c6;margin-bottom:4px;text-align:center;}
+.hug-sub{font-size:1rem;color:rgba(255,179,198,.5);margin-bottom:28px;text-align:center;}
+.hug-wrap{position:relative;cursor:pointer;width:200px;height:200px;display:flex;align-items:center;justify-content:center;}
+.hug-circle{position:absolute;inset:0;border-radius:50%;background:radial-gradient(ellipse,rgba(232,57,90,.2) 0%,transparent 70%);animation:hugPulse 1.4s ease-in-out infinite;}
+@keyframes hugPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.15);opacity:1}}
+.hug-emoji{font-size:7rem;animation:hbeat 1.4s ease-in-out infinite;display:block;}
+.hug-arms{position:absolute;font-size:3.5rem;top:50%;transform:translateY(-50%);transition:all .5s cubic-bezier(.34,1.56,.64,1);}
+.hug-arm-left{left:-10px;transform:translateY(-50%) rotate(-30deg);transform-origin:right center;}
+.hug-arm-right{right:-10px;transform:translateY(-50%) rotate(30deg);transform-origin:left center;}
+.hug-wrap.hugging .hug-arm-left{left:30px;transform:translateY(-50%) rotate(30deg);}
+.hug-wrap.hugging .hug-arm-right{right:30px;transform:translateY(-50%) rotate(-30deg);}
+.hug-msg{margin-top:20px;font-size:1.3rem;color:#ffb3c6;text-align:center;min-height:40px;transition:opacity .4s;opacity:0;}
+.hug-msg.on{opacity:1;}
+.hug-btn{margin-top:20px;background:linear-gradient(135deg,#e8395a,#c2185b);border:none;color:#fff;padding:13px 34px;border-radius:40px;font-size:1.2rem;cursor:pointer;font-family:'Caveat',cursive;}
+
+/* ══ JUMPSCARE ══ */
+.jump-ov{background:#000;position:relative;}
+.jump-setup{display:flex;flex-direction:column;align-items:center;gap:16px;}
+.jump-title{font-family:'Playfair Display',serif;font-style:italic;font-size:1.8rem;color:#f4c842;text-align:center;}
+.jump-sub{font-size:1rem;color:rgba(255,255,255,.5);text-align:center;max-width:300px;}
+.jump-btn{background:linear-gradient(135deg,#8b5cf6,#6d28d9);border:none;color:#fff;padding:14px 40px;border-radius:40px;font-size:1.3rem;cursor:pointer;font-family:'Caveat',cursive;}
+.jump-scare{display:none;position:absolute;inset:0;align-items:center;justify-content:center;flex-direction:column;background:#000;}
+@keyframes jumpIn{0%{transform:scale(2.5);opacity:0}100%{transform:scale(1);opacity:1}}
+.jump-scare.on{display:flex;animation:jumpIn .15s ease-out forwards;}
+.jump-em{font-size:14rem;line-height:1;display:block;}
+.jump-reveal{font-size:1.4rem;color:#f4c842;text-align:center;margin-top:16px;font-family:'Caveat',cursive;padding:0 20px;}
+.jump-again-btn{margin-top:20px;background:linear-gradient(135deg,#e8395a,#7c3aed);border:none;color:#fff;padding:12px 28px;border-radius:30px;font-size:1.1rem;cursor:pointer;font-family:'Caveat',cursive;}
+#jumpCount{color:#fff;font-size:8rem;font-family:'Caveat',cursive;text-align:center;text-shadow:0 0 40px rgba(255,255,255,.8);}
+
+/* ══ MEME GENERATOR ══ */
+.meme-ov{background:radial-gradient(ellipse at 50% 30%,#0a1020,#050810);overflow-y:auto;justify-content:flex-start;padding:20px;}
+.meme-hdr{width:100%;display:flex;align-items:center;gap:12px;margin-bottom:16px;position:sticky;top:0;z-index:10;background:rgba(5,8,16,.85);backdrop-filter:blur(10px);padding:10px 0;}
+.meme-title{font-family:'Playfair Display',serif;font-style:italic;font-size:1.6rem;color:#60a5fa;flex:1;}
+.meme-card{background:linear-gradient(135deg,rgba(96,165,250,.1),rgba(167,139,250,.06));border:1.5px solid rgba(96,165,250,.3);border-radius:20px;padding:22px;max-width:400px;width:100%;text-align:center;margin-bottom:16px;}
+.meme-emoji{font-size:5rem;margin-bottom:10px;display:block;animation:wig .6s ease-in-out infinite alternate;}
+.meme-caption{font-family:'Caveat',cursive;font-size:1.3rem;color:#fff;line-height:1.6;min-height:80px;display:flex;align-items:center;justify-content:center;transition:opacity .3s;}
+.meme-caption.fd{opacity:0;}
+.meme-style-row{display:flex;gap:8px;flex-wrap:wrap;max-width:400px;width:100%;margin-bottom:14px;justify-content:center;}
+.meme-style-btn{padding:8px 16px;border-radius:20px;border:1.5px solid rgba(96,165,250,.3);background:rgba(96,165,250,.08);color:#60a5fa;font-family:'Caveat',cursive;font-size:1rem;cursor:pointer;transition:all .2s;}
+.meme-style-btn.sel{background:rgba(96,165,250,.28);border-color:#60a5fa;box-shadow:0 0 12px rgba(96,165,250,.3);}
+.meme-gen-btn{background:linear-gradient(135deg,#3b82f6,#6d28d9);border:none;color:#fff;padding:13px 36px;border-radius:40px;font-size:1.2rem;cursor:pointer;font-family:'Caveat',cursive;}
+.gussa-ov{background:radial-gradient(ellipse at 50% 30%,#2a0505,#0d0303);}
+.sad-ov{background:radial-gradient(ellipse at 50% 30%,#05102a,#02060d);}
+.hasao-ov{background:radial-gradient(ellipse at 50% 30%,#1a1500,#0d0a00);}
+
+.mood-lock-wrap{display:flex;flex-direction:column;align-items:center;width:100%;}
+.mood-lock-icon{font-size:5rem;margin-bottom:8px;animation:lkp 1.5s ease-in-out infinite;}
+.mood-lock-title{font-family:'Playfair Display',serif;font-style:italic;font-size:1.8rem;margin-bottom:6px;}
+.mood-lock-hint{font-size:1rem;color:rgba(255,255,255,.4);margin-bottom:20px;}
+.mood-dots{display:flex;gap:12px;margin-bottom:20px;}
+.md{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);transition:all .2s;}
+.md.fl{background:#fff;box-shadow:0 0 10px rgba(255,255,255,.7);}
+.md.wr{background:#ef4444;box-shadow:0 0 10px rgba(239,68,68,.7);}
+.mood-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:240px;width:100%;}
+.mk{height:56px;border-radius:14px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.85);font-size:1.4rem;font-family:'Caveat',cursive;cursor:pointer;transition:all .15s;}
+.mk:active{background:rgba(255,255,255,.22);transform:scale(.92);}
+.mk.del{color:#f87171;border-color:rgba(248,113,113,.3);}
+
+.mood-content{display:none;flex-direction:column;align-items:center;width:100%;max-width:360px;animation:popIn .5s cubic-bezier(.34,1.56,.64,1);}
+.mood-content.on{display:flex;}
+.mood-content-emoji{font-size:5rem;margin-bottom:14px;animation:wig .6s ease-in-out infinite alternate;}
+.mood-msg-card{border:1.5px solid;border-radius:20px;padding:22px 20px;width:100%;margin-bottom:18px;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);}
+.mood-msg-txt{font-family:'Caveat',cursive;font-size:1.15rem;color:rgba(255,255,255,.9);line-height:1.8;text-align:center;}
+.mood-btns-row{display:flex;gap:12px;width:100%;}
+.mood-action-btn{flex:1;padding:12px 0;border-radius:30px;border:none;color:#fff;font-family:'Caveat',cursive;
+  font-size:1.1rem;cursor:pointer;transition:transform .15s;}
+.mood-action-btn:active{transform:scale(.92);}
+</style>
+</head>
+<body>
+
+<canvas id="hCv" style="position:fixed;inset:0;pointer-events:none;z-index:0;"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="crown">👑</div>
+  <h1 class="hero-title">Rashi ke Naam</h1>
+  <p class="hero-sub">Dil ke kone se... ❤️‍🔥</p>
+  <div class="scroll-hint">↓ Neeche Padho ↓</div>
+</section>
+
+<!-- HEART TAP -->
+<section class="heart-sec" id="hSec">
+  <div class="heart-hint">Yahan tap karo... 💌</div>
+  <div class="heart-wrap" id="hWrap">
+    <div class="big-heart" id="bHeart">❤️</div>
+    <canvas class="burst-cv" id="bCv" width="300" height="300"></canvas>
+  </div>
+  <div class="tap-count" id="tapMsg"></div>
+</section>
+
+<!-- LOVE LETTER -->
+<section class="letter-sec" id="lSec" style="display:none;">
+  <div class="letter-card">
+    <div class="letter-stamp">💌</div>
+    <div class="letter-date" id="lDate"></div>
+    <div class="letter-greeting">Hamri Pyaari Rashi Ji,</div>
+    <div class="letter-body" id="lBody">
+      <p>Aa gaila ke bataayi... roz uthate hain tab pehle tohaar chehra sochila, aur raat ke neend aave na jab tak tohaar yaad na aa jaaye. 😍</p>
+      <p>Bhojpuri mein kahi ke baat karna ho to bola – <span class="hl">"Tu hamar jaan baanis, hamar dhadkan baanis"</span> – matlab tu hamar sab kuch baanis Rashi!</p>
+      <p>Tohaar ek muskaan pe hamar poora din ban jaata hai. Jab tu hasati hai na, lage jaise Ganga maiyya ke kinare baithe hain aur thandi hawa chal rahi ho... 😌</p>
+      <p>Hum jaantalein ki hum kabhi kabhi pagal laagila, galat baat karila, lekin dil se poori tarah se tohare hi baanis. <span class="hl">Sacchi promise!</span> 🤙</p>
+      <p>Bhojpuri wale pyaar seedha seena se karte hain – koi filmy dialogue nahi. Bas itna jaano ki <span class="hl">tum hamaari duniya ho, Rashi!</span> 🌍❤️</p>
+      <p>Agar kabhi bura laage, udaas ho – yaad rakho ek pagal hai yahan jo sirf tere liye sochta hai roz... aur thoda jhooth bhi bolata hai "sab theek hai" jab tak tum nahi hoti! 😂</p>
+      <p>Toh bas... <span class="hl">Hamse miloge na? Hamesha ke liye? 💍</span></p>
+    </div>
+    <div class="letter-sign">— Tumhara pagla Aayu 🌹</div>
+    <button class="back-btn" id="backBtn">↩ Wapas Jao</button>
+  </div>
+</section>
+
+<!-- MASTER RIGHT FAB: Music + Jokes -->
+<div class="master-fab-wrap" id="masterRightWrap" style="position:fixed;right:14px;bottom:14px;z-index:1000;display:flex;flex-direction:column;align-items:flex-end;gap:0;">
+  <!-- Sub-menu panel -->
+  <div class="master-panel" id="rightPanel">
+    <div class="master-panel-title">🎵 Gaane</div>
+    <div class="master-sub-row">
+      <button class="fopt" id="mo0" title="Romantic">🌹</button>
+      <button class="fopt" id="mo1" title="Sad">💔</button>
+      <button class="fopt" id="mo2" title="Happy">🎉</button>
+      <button class="fopt" id="mo3" title="Desi">🪗</button>
+      <button class="fopt" id="mo4" title="Bhojpuri">🎵</button>
+      <button class="fopt" id="mo5" title="Love">💝</button>
+    </div>
+    <div class="master-panel-title" style="margin-top:10px;">🤣 Jokes</div>
+    <div class="frow"><button class="fopt" id="cm0">😂</button><button class="fopt" id="cm1">🤪</button><button class="fopt" id="cm2">😜</button><button class="fopt" id="cm3">🙈</button><button class="fopt" id="cm4">😝</button></div>
+    <div class="frow"><button class="fopt" id="cm5">🤡</button><button class="fopt" id="cm6">💀</button><button class="fopt" id="cm7">🫣</button><button class="fopt" id="cm8">🤦</button><button class="fopt" id="cm9">😈</button></div>
+    <div class="frow"><button class="fopt" id="cm10">👻</button><button class="fopt" id="cm11">🤤</button><button class="fopt" id="cm12">😭</button><button class="fopt" id="cm13">🙃</button><button class="fopt" id="cm14">🤯</button></div>
+    <div class="frow"><button class="fopt" id="cm15">😤</button><button class="fopt" id="cm16">🥴</button><button class="fopt" id="cm17">😻</button><button class="fopt" id="cm18">🤩</button><button class="fopt" id="cm19">🔥</button></div>
+  </div>
+  <!-- Master button -->
+  <button class="master-btn" id="masterRightBtn">🎶</button>
+</div>
+
+<!-- MASTER LEFT FAB: Features -->
+<div class="master-fab-wrap" id="masterLeftWrap" style="position:fixed;left:14px;bottom:14px;z-index:1000;display:flex;flex-direction:column;align-items:flex-start;gap:0;">
+  <!-- Sub-menu panel -->
+  <div class="master-panel master-panel-left" id="leftPanel">
+    <div class="master-panel-title">✨ Features</div>
+    <div class="feat-grid">
+      <button class="feat-btn" id="propFab">
+        <span class="feat-em">💍</span>
+        <span class="feat-lbl">Proposal</span>
+      </button>
+      <button class="feat-btn" id="roastFab">
+        <span class="feat-em">🔥</span>
+        <span class="feat-lbl">Roast</span>
+      </button>
+      <button class="feat-btn" id="photoFab">
+        <span class="feat-em">📸</span>
+        <span class="feat-lbl">Photos</span>
+      </button>
+      <button class="feat-btn" id="secretFab">
+        <span class="feat-em">💌</span>
+        <span class="feat-lbl">Secret</span>
+      </button>
+      <button class="feat-btn" id="spinFab">
+        <span class="feat-em">🎮</span>
+        <span class="feat-lbl">Spin</span>
+      </button>
+      <button class="feat-btn" id="sorryFab">
+        <span class="feat-em">😇</span>
+        <span class="feat-lbl">Sorry Letter</span>
+      </button>
+      <button class="feat-btn" id="therapyFab">
+        <span class="feat-em">🧠</span>
+        <span class="feat-lbl">AI Therapist</span>
+      </button>
+      <button class="feat-btn" id="slideFab">
+        <span class="feat-em">🖼️</span>
+        <span class="feat-lbl">Slideshow</span>
+      </button>
+      <button class="feat-btn" id="compFab">
+        <span class="feat-em">🌟</span>
+        <span class="feat-lbl">Compliment</span>
+      </button>
+      <button class="feat-btn" id="hugFab">
+        <span class="feat-em">🤗</span>
+        <span class="feat-lbl">Virtual Hug</span>
+      </button>
+      <button class="feat-btn" id="jumpFab">
+        <span class="feat-em">👻</span>
+        <span class="feat-lbl">Jumpscare</span>
+      </button>
+      <button class="feat-btn" id="memeFab">
+        <span class="feat-em">😂</span>
+        <span class="feat-lbl">Meme</span>
+      </button>
+    </div>
+    <div class="master-panel-title" style="margin-top:10px;">🎭 Rashi ka Mood</div>
+    <div class="feat-grid">
+      <button class="feat-btn mood-btn" id="gussaFab" style="border-color:rgba(239,68,68,.4);">
+        <span class="feat-em">😤</span>
+        <span class="feat-lbl" style="color:#fca5a5;">Gussa<br>🔒</span>
+      </button>
+      <button class="feat-btn mood-btn" id="sadFab" style="border-color:rgba(96,165,250,.4);">
+        <span class="feat-em">😢</span>
+        <span class="feat-lbl" style="color:#93c5fd;">Sad<br>🔒</span>
+      </button>
+      <button class="feat-btn mood-btn" id="hasaoFab" style="border-color:rgba(250,204,21,.4);">
+        <span class="feat-em">😂</span>
+        <span class="feat-lbl" style="color:#fde68a;">Hasao<br>🔒</span>
+      </button>
+    </div>
+  </div>
+  <button class="master-btn master-btn-left" id="masterLeftBtn">💫</button>
+</div>
+
+<!-- MUSIC PAGE -->
+<div class="ov music-ov" id="musicPg">
+  <div class="mp-hdr">
+    <button class="pg-x" id="musicX">✕</button>
+    <div class="mp-name" id="mpName">Loading...</div>
+    <span id="mpEm">🎶</span>
+  </div>
+  <div class="vinyl" id="vinyl"></div>
+  <button class="playbtn" id="playBtn">▶</button>
+  <div style="font-size:.9rem;color:var(--pink);margin-top:6px;">Lyrics pe tap karo ➡</div>
+  <div class="lyr-area" id="lyrArea"></div>
+  <audio id="mAudio"></audio>
+</div>
+
+<!-- CUTE POPUP -->
+<div class="cute-ov" id="cuteOv">
+  <div class="cute-card">
+    <div class="conf-wrap" id="confWrap"></div>
+    <span class="cute-em" id="cuteEm"></span>
+    <div class="cute-msg" id="cuteMsg"></div>
+    <button class="cute-close" id="cuteClose">Aww! 💕 Band Karo</button>
+  </div>
+</div>
+
+<!-- PROPOSAL PAGE -->
+<div class="ov prop-ov" id="propPg">
+  <button class="pg-x" id="propX">✕</button>
+  <canvas class="fw-cv" id="fwCv"></canvas>
+  <div class="ring-wrap" id="rWrap">
+    <div class="rgem" id="rGem">💍</div>
+    <div class="rbox" id="rBox">💝</div>
+  </div>
+  <div class="phint" id="pHint">Box tap karo... 💝</div>
+  <div class="pq" id="pQ">Rashi... hamar dil mein ek sawaal hai —<br><span style="color:var(--rose)">Kya tum hamesha hamaari rahogi? 💍</span></div>
+  <div class="psub" id="pSub">Garhani se lekar duniya ke kone tak... sirf tore saath! 🌍</div>
+  <div class="pbtns" id="pBtns">
+    <button class="byes" id="btnYes">💚 Haan Ji!</button>
+    <button class="bno" id="btnNo">😅 Nahi...</button>
+  </div>
+  <div class="presp" id="pResp">
+    <div class="presp-em" id="respEm"></div>
+    <div class="presp-t" id="respT"></div>
+    <div class="presp-s" id="respS"></div>
+  </div>
+</div>
+
+<!-- ROAST PAGE -->
+<div class="ov roast-ov" id="roastPg">
+  <button class="pg-x" id="roastX">✕</button>
+  <div class="rtitle">🔥 Roast Time!</div>
+  <div class="rsub">Rashi ke liye pyaar bhari jalaahat 😂</div>
+  <div class="rcard">
+    <div class="rfire">🔥</div>
+    <div class="rtxt" id="rTxt">Button dabao aur suno! 😈</div>
+  </div>
+  <button class="rbtn" id="roastBtn">😂 Aur Suno!</button>
+  <div class="rcnt" id="rCnt"></div>
+</div>
+
+<!-- PHOTO WALL -->
+<div class="ov photo-ov" id="photoPg">
+  <div class="phdr">
+    <button class="pg-x" id="photoX" style="position:static;">✕</button>
+    <div class="ptitle">💜 Hamaari Yaadein</div>
+  </div>
+  <div class="pgrid" id="pGrid"></div>
+</div>
+<div class="lb" id="lb">
+  <button class="lb-x" id="lbX">✕</button>
+  <img id="lbImg" src="" alt="">
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<!-- SECRET MESSAGE -->
+<div class="ov secret-ov" id="secretPg">
+  <button class="pg-x" id="secretX">✕</button>
+  <div class="slk" id="sLock">🔒</div>
+  <div class="stitle">Secret Sandesh</div>
+  <div class="shint">Passcode daalo... 4 digit 🤫</div>
+  <div class="sdots" id="sDots">
+    <div class="sd" id="sd0"></div><div class="sd" id="sd1"></div>
+    <div class="sd" id="sd2"></div><div class="sd" id="sd3"></div>
+  </div>
+  <div class="spad" id="sPad">
+    <button class="sk" data-v="1">1</button><button class="sk" data-v="2">2</button><button class="sk" data-v="3">3</button>
+    <button class="sk" data-v="4">4</button><button class="sk" data-v="5">5</button><button class="sk" data-v="6">6</button>
+    <button class="sk" data-v="7">7</button><button class="sk" data-v="8">8</button><button class="sk" data-v="9">9</button>
+    <button class="sk del" data-v="del">⌫</button><button class="sk" data-v="0">0</button><button class="sk del" data-v="clr">✕</button>
+  </div>
+  <div class="srev" id="sRev">
+    <div style="font-size:3.5rem;margin-bottom:12px;">💌✨</div>
+    <div class="srev-msg" id="sMsg"></div>
+    <button class="sreset" id="sResetBtn">🔒 Phir Lock Karo</button>
+  </div>
+</div>
+
+<!-- SPIN WHEEL -->
+<div class="ov spin-ov" id="spinPg">
+  <button class="pg-x" id="spinX">✕</button>
+  <div class="sptitle">💕 Pyaar Ka Chakkar!</div>
+  <div class="spsub">Spin karo aur dekho kitna pyaar hai! 🎮</div>
+  <div class="whl-wrap">
+    <div class="wptr">🔽</div>
+    <canvas id="wCanvas" width="270" height="270"></canvas>
+  </div>
+  <button class="spbtn" id="spBtn">💫 Spin Karo!</button>
+  <div class="spres" id="spRes"></div>
+</div>
+
+<!-- MOOD LOCK PAGES -->
+
+<!-- 😤 GUSSA PAGE -->
+<div class="ov mood-ov gussa-ov" id="gussaPg">
+  <button class="pg-x" id="gussaX">✕</button>
+  <div class="mood-lock-wrap" id="gussaLockWrap">
+    <div class="mood-lock-icon" id="gussaLockIcon">🔒</div>
+    <div class="mood-lock-title" style="color:#fca5a5;">Gussa Mode 😤</div>
+    <div class="mood-lock-hint">Passcode daalo Rashi... 🤫</div>
+    <div class="mood-dots" id="gussaDots">
+      <div class="md" id="gd0"></div><div class="md" id="gd1"></div>
+      <div class="md" id="gd2"></div><div class="md" id="gd3"></div>
+    </div>
+    <div class="mood-pad">
+      <button class="mk" data-mode="gussa" data-v="1">1</button><button class="mk" data-mode="gussa" data-v="2">2</button><button class="mk" data-mode="gussa" data-v="3">3</button>
+      <button class="mk" data-mode="gussa" data-v="4">4</button><button class="mk" data-mode="gussa" data-v="5">5</button><button class="mk" data-mode="gussa" data-v="6">6</button>
+      <button class="mk" data-mode="gussa" data-v="7">7</button><button class="mk" data-mode="gussa" data-v="8">8</button><button class="mk" data-mode="gussa" data-v="9">9</button>
+      <button class="mk del" data-mode="gussa" data-v="del">⌫</button><button class="mk" data-mode="gussa" data-v="0">0</button><button class="mk del" data-mode="gussa" data-v="clr">✕</button>
+    </div>
+  </div>
+  <div class="mood-content" id="gussaContent">
+    <div class="mood-content-emoji" id="gussaEmAnim">😤</div>
+    <div class="mood-msg-card" style="border-color:rgba(239,68,68,.4);background:rgba(239,68,68,.08);">
+      <div class="mood-msg-txt">
+        Rashi... hum jaanilein tu bahut gussa hai humse. 😔<br><br>
+        Par sun — <span style="color:#fca5a5;font-weight:700">hum se zyada koi nahi darta tore gusse se!</span><br><br>
+        Aur isi liye... hum sorry bol rahe hain. Sachchi! 🙏<br><br>
+        Tu naraaz ho toh lage jaise duniya mein rang nahi raha. Gusse mein bhi tu <span style="color:#fca5a5;font-weight:700">duniya ki sabse sundar insaan</span> hai!<br><br>
+        Ab maan jaa na... ❤️‍🔥<br>
+        <span style="color:#fca5a5;">— Tera pagla Aayu 🌹</span>
+      </div>
+    </div>
+    <div class="mood-btns-row">
+      <button class="mood-action-btn" style="background:linear-gradient(135deg,#ef4444,#b91c1c);" onclick="document.getElementById('gussaPg').classList.remove('on')">✅ Maan Gayi!</button>
+      <button class="mood-action-btn" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);" id="gussaResetBtn">🔒 Lock Karo</button>
+    </div>
+  </div>
+</div>
+
+<!-- 😢 SAD PAGE -->
+<div class="ov mood-ov sad-ov" id="sadPg">
+  <button class="pg-x" id="sadX">✕</button>
+  <div class="mood-lock-wrap" id="sadLockWrap">
+    <div class="mood-lock-icon" id="sadLockIcon">🔒</div>
+    <div class="mood-lock-title" style="color:#93c5fd;">Sad Mode 😢</div>
+    <div class="mood-lock-hint">Passcode daalo Rashi... 🤫</div>
+    <div class="mood-dots" id="sadDots">
+      <div class="md" id="ssd0"></div><div class="md" id="ssd1"></div>
+      <div class="md" id="ssd2"></div><div class="md" id="ssd3"></div>
+    </div>
+    <div class="mood-pad">
+      <button class="mk" data-mode="sad" data-v="1">1</button><button class="mk" data-mode="sad" data-v="2">2</button><button class="mk" data-mode="sad" data-v="3">3</button>
+      <button class="mk" data-mode="sad" data-v="4">4</button><button class="mk" data-mode="sad" data-v="5">5</button><button class="mk" data-mode="sad" data-v="6">6</button>
+      <button class="mk" data-mode="sad" data-v="7">7</button><button class="mk" data-mode="sad" data-v="8">8</button><button class="mk" data-mode="sad" data-v="9">9</button>
+      <button class="mk del" data-mode="sad" data-v="del">⌫</button><button class="mk" data-mode="sad" data-v="0">0</button><button class="mk del" data-mode="sad" data-v="clr">✕</button>
+    </div>
+  </div>
+  <div class="mood-content" id="sadContent">
+    <div class="mood-content-emoji" id="sadEmAnim">😢</div>
+    <div class="mood-msg-card" style="border-color:rgba(96,165,250,.4);background:rgba(96,165,250,.08);">
+      <div class="mood-msg-txt">
+        Rashi... pata hai hume jab tu udaas hoti hai na...<br>
+        <span style="color:#93c5fd;font-weight:700">hamara dil bhi toot jaata hai. 💙</span><br><br>
+        Tu is duniya mein akeli nahi hai kabhi — hum hain na! 🤗<br><br>
+        Jo bhi takleef hai, jo bhi dard hai...<br>
+        <span style="color:#93c5fd;font-weight:700">hum sath mein uthailein, akele mat raho.</span><br><br>
+        Rona achha hai kabhi kabhi — par yaad rakho,<br>
+        in aankhon ki chamak wapas lani hai hume! ✨<br><br>
+        Tore muskaan ka intezaar hai... 🌈<br>
+        <span style="color:#93c5fd;">— Tera Aayu 💙</span>
+      </div>
+    </div>
+    <div class="mood-btns-row">
+      <button class="mood-action-btn" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);" onclick="document.getElementById('sadPg').classList.remove('on')">🤗 Theek Hoon!</button>
+      <button class="mood-action-btn" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);" id="sadResetBtn">🔒 Lock Karo</button>
+    </div>
+  </div>
+</div>
+
+<!-- 😂 HASAO PAGE -->
+<div class="ov mood-ov hasao-ov" id="hasaoPg">
+  <button class="pg-x" id="hasaoX">✕</button>
+  <div class="mood-lock-wrap" id="hasaoLockWrap">
+    <div class="mood-lock-icon" id="hasaoLockIcon">🔒</div>
+    <div class="mood-lock-title" style="color:#fde68a;">Hasao Mode 😂</div>
+    <div class="mood-lock-hint">Passcode daalo Rashi... 🤫</div>
+    <div class="mood-dots" id="hasaoDots">
+      <div class="md" id="hd0"></div><div class="md" id="hd1"></div>
+      <div class="md" id="hd2"></div><div class="md" id="hd3"></div>
+    </div>
+    <div class="mood-pad">
+      <button class="mk" data-mode="hasao" data-v="1">1</button><button class="mk" data-mode="hasao" data-v="2">2</button><button class="mk" data-mode="hasao" data-v="3">3</button>
+      <button class="mk" data-mode="hasao" data-v="4">4</button><button class="mk" data-mode="hasao" data-v="5">5</button><button class="mk" data-mode="hasao" data-v="6">6</button>
+      <button class="mk" data-mode="hasao" data-v="7">7</button><button class="mk" data-mode="hasao" data-v="8">8</button><button class="mk" data-mode="hasao" data-v="9">9</button>
+      <button class="mk del" data-mode="hasao" data-v="del">⌫</button><button class="mk" data-mode="hasao" data-v="0">0</button><button class="mk del" data-mode="hasao" data-v="clr">✕</button>
+    </div>
+  </div>
+  <div class="mood-content" id="hasaoContent">
+    <div class="mood-content-emoji" id="hasaoEmAnim">😂</div>
+    <div class="mood-msg-card" style="border-color:rgba(250,204,21,.4);background:rgba(250,204,21,.08);">
+      <div class="mood-msg-txt">
+        Rashi sun — ek pagal ka confession! 😂<br><br>
+        <span style="color:#fde68a;font-weight:700">Hum subah uthate hain mirror mein dekhte hain...</span><br>
+        aur sochte hain — "Kya kamal ka insaan hoon!" 😎<br>
+        Phir phone uthate hain — koi message nahi Rashi ka —<br>
+        <span style="color:#fde68a;font-weight:700">"Ek dum bekar insaan hoon!" 😭</span><br><br>
+        Ek aur — hum itne handsome hain ki...<br>
+        ek baar hum baazar gaye toh sabziwaale ne bola —<br>
+        <span style="color:#fde68a;font-weight:700">"Bhaiya 10 rupaye zyada lagenge, itna sundar chehra dekhne ka charge!" 😂</span><br><br>
+        Ab hasi aayi na? 😄 Mission complete! ✅<br>
+        <span style="color:#fde68a;">— Tera funny Aayu 🤡</span>
+      </div>
+    </div>
+    <div class="mood-btns-row">
+      <button class="mood-action-btn" style="background:linear-gradient(135deg,#f59e0b,#b45309);" onclick="document.getElementById('hasaoPg').classList.remove('on')">😂 Hasi Aa Gayi!</button>
+      <button class="mood-action-btn" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);" id="hasaoResetBtn">🔒 Lock Karo</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- SORRY LETTER PAGE -->
+<div class="ov sorry-ov" id="sorryPg">
+  <div class="sorry-hdr">
+    <button class="pg-x" id="sorryX" style="position:static;">✕</button>
+    <div class="sorry-title">💜 Sorry Letter Generator</div>
+  </div>
+  <div class="sorry-card" id="sorryCard">
+    <div class="sorry-loading" id="sorryLoading" style="display:none;">
+      <div class="sorry-spinner"></div>
+      <div style="font-family:'Caveat',cursive;font-size:1.1rem;color:#a855f7;">Dil se letter likh raha hoon... 💜</div>
+    </div>
+    <div id="sorryContent">
+      <div style="font-size:3rem;text-align:center;margin-bottom:12px;">🙏💜</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:#a855f7;text-align:center;margin-bottom:8px;">Kis baat ka Sorry?</div>
+      <div style="font-family:'Caveat',cursive;font-size:.95rem;color:#888;text-align:center;margin-bottom:16px;">Reason choose karo — AI real sorry letter likhega!</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:16px;">
+        <button class="sorry-reason-btn" data-reason="late reply">😔 Late Reply</button>
+        <button class="sorry-reason-btn" data-reason="being stubborn">😤 Stubborn</button>
+        <button class="sorry-reason-btn" data-reason="not being romantic enough">💔 Romantic nahi</button>
+        <button class="sorry-reason-btn" data-reason="making her sad">😢 Udaas kiya</button>
+        <button class="sorry-reason-btn" data-reason="not giving enough time">⏰ Time nahi</button>
+        <button class="sorry-reason-btn" data-reason="being overprotective">🙈 Overprotective</button>
+      </div>
+      <button class="sorry-gen-btn" id="sorryGenBtn">✨ AI Se Letter Likhwao</button>
+    </div>
+    <div id="sorryResult" style="display:none;">
+      <div class="sorry-text" id="sorryText"></div>
+      <div class="sorry-sign">— Tera Aayu 🌹</div>
+      <button class="sorry-gen-btn" id="sorryAgainBtn" style="margin-top:12px;background:linear-gradient(135deg,#7c3aed,#4c1d95);">🔄 Naya Letter</button>
+    </div>
+  </div>
+</div>
+
+<!-- AI THERAPIST PAGE -->
+<div class="ov therapy-ov" id="therapyPg">
+  <!-- Fixed header -->
+  <div class="therapy-hdr">
+    <button class="pg-x" id="therapyX" style="position:static;">✕</button>
+    <div class="therapy-title">🧠 AI Therapist</div>
+  </div>
+  <!-- Fixed moods section -->
+  <div class="therapy-moods-wrap">
+    <div class="therapy-subtitle">Rashi... aaj kaisa feel ho raha hai? 💚</div>
+    <div class="therapy-moods">
+      <button class="therapy-mood-btn" data-mood="sad and lonely">😢 Udaas</button>
+      <button class="therapy-mood-btn" data-mood="stressed and anxious">😰 Stressed</button>
+      <button class="therapy-mood-btn" data-mood="angry">😤 Gussa</button>
+      <button class="therapy-mood-btn" data-mood="tired and exhausted">😴 Thak Gayi</button>
+      <button class="therapy-mood-btn" data-mood="missing someone">💭 Miss Kar Rahi</button>
+      <button class="therapy-mood-btn" data-mood="feeling unloved">💔 Akeli</button>
+    </div>
+  </div>
+  <!-- Scrollable message area -->
+  <div class="therapy-scroll">
+    <div class="therapy-bubble" id="therapyBubble">
+      <div style="text-align:center;padding:10px 0;">
+        <div style="font-size:3rem;margin-bottom:8px;">🤗</div>
+        <div style="font-family:'Caveat',cursive;color:rgba(52,211,153,.7);font-size:1.05rem;">Mood choose karo upar se, phir baat karte hain!</div>
+      </div>
+    </div>
+  </div>
+  <!-- Fixed bottom button -->
+  <div class="therapy-btn-wrap" id="therapyBtnWrap" style="display:none;">
+    <button class="therapy-talk-btn" id="therapyTalkBtn">💚 Aur Batao</button>
+  </div>
+</div>
+
+<!-- SLIDESHOW PAGE -->
+<div class="ov slide-ov" id="slidePg">
+  <button class="pg-x" id="slideX">✕</button>
+  <div class="slide-title">💕 Hamaari Khubsoorat Yaadein</div>
+  <div class="slide-frame" id="slideFrame"></div>
+  <div class="slide-dots" id="slideDots"></div>
+  <div class="slide-controls">
+    <button class="slide-btn" id="slidePrev">‹</button>
+    <button class="slide-play-btn" id="slidePlayPause">⏸</button>
+    <button class="slide-btn" id="slideNext">›</button>
+  </div>
+  <div class="slide-counter" id="slideCounter"></div>
+</div>
+
+<!-- COMPLIMENT MACHINE PAGE -->
+<div class="ov comp-ov" id="compPg">
+  <button class="pg-x" id="compX">✕</button>
+  <div class="comp-title">🌟 Compliment Machine</div>
+  <div class="comp-sub">Tap karo aur compliment lo! 💫</div>
+  <div class="comp-card">
+    <div class="comp-star">⭐</div>
+    <div class="comp-text" id="compText">Button dabao Rashi... 🌟</div>
+  </div>
+  <button class="comp-tap-btn" id="compBtn">💫 Compliment Do!</button>
+  <div class="comp-cnt" id="compCnt"></div>
+</div>
+
+<!-- VIRTUAL HUG PAGE -->
+<div class="ov hug-ov" id="hugPg">
+  <button class="pg-x" id="hugX">✕</button>
+  <div class="hug-title">🤗 Virtual Hug</div>
+  <div class="hug-sub">Tap karo hug lene ke liye! 💕</div>
+  <div class="hug-wrap" id="hugWrap">
+    <div class="hug-circle"></div>
+    <span class="hug-emoji">🫂</span>
+    <span class="hug-arms hug-arm-left">🫶</span>
+    <span class="hug-arms hug-arm-right">🫶</span>
+  </div>
+  <div class="hug-msg" id="hugMsg"></div>
+  <button class="hug-btn" id="hugBtn">🤗 Hug Karo!</button>
+</div>
+
+<!-- JUMPSCARE PAGE -->
+<div class="ov jump-ov" id="jumpPg">
+  <button class="pg-x" id="jumpX">✕</button>
+  <div class="jump-setup" id="jumpSetup">
+    <div style="font-size:4rem;">👻</div>
+    <div class="jump-title">Jumpscare Ready! 😂</div>
+    <div class="jump-sub">Dare hai? Button dabao — scary nahi, funny wala jumpscare hai! 😂</div>
+    <div style="font-size:.9rem;color:rgba(255,255,255,.3);text-align:center;">*sound on karo best experience ke liye* 🔊</div>
+    <button class="jump-btn" id="jumpStartBtn">👻 Scare Karo!</button>
+  </div>
+  <div class="jump-scare" id="jumpScare">
+    <span class="jump-em" id="jumpEm">👻</span>
+    <div class="jump-reveal" id="jumpReveal"></div>
+    <button class="jump-again-btn" id="jumpAgainBtn">😂 Phir Se!</button>
+  </div>
+</div>
+
+<!-- MEME GENERATOR PAGE -->
+<div class="ov meme-ov" id="memePg">
+  <div class="meme-hdr">
+    <button class="pg-x" id="memeX" style="position:static;">✕</button>
+    <div class="meme-title">😂 AI Meme Generator</div>
+  </div>
+  <div class="meme-card" id="memeCard">
+    <span class="meme-emoji" id="memeEmoji">🤣</span>
+    <div class="meme-caption" id="memeCaption">Pehle style choose karo... 😎</div>
+  </div>
+  <div class="meme-style-row">
+    <button class="meme-style-btn sel" data-style="funny and cute">😂 Funny</button>
+    <button class="meme-style-btn" data-style="romantic and sweet">💕 Romantic</button>
+    <button class="meme-style-btn" data-style="savage roast">🔥 Savage</button>
+    <button class="meme-style-btn" data-style="desi Bhojpuri style">🪗 Desi</button>
+  </div>
+  <button class="meme-gen-btn" id="memeGenBtn">🤣 Generate Karo!</button>
+</div>
+
+<style>
+.sorry-reason-btn{padding:8px 14px;border-radius:20px;border:1.5px solid rgba(168,85,247,.35);background:rgba(168,85,247,.1);color:#c084fc;font-family:'Caveat',cursive;font-size:1rem;cursor:pointer;transition:all .2s;}
+.sorry-reason-btn:active,.sorry-reason-btn.sel{background:rgba(168,85,247,.28);border-color:#a855f7;box-shadow:0 0 12px rgba(168,85,247,.3);}
+</style>
+
+<script>
+// ══════════════════════════════════════════════════
+// CONFIG
+var BASE = 'https://raw.githubusercontent.com/codewithaayu1/YOUR_REPO/main/';
+var SECRET_CODE = '1234';
+
+// ══════════════════════════════════════════════════
+// DATA
+var songs = [
+  { name:'Hum Haeen Piya Ji Ke Patar Tiriywa', em:'🌹', file:'romantic1.mp3', lyr:[
+    'Tohra mein base raja hamaro paranawa ho...','Raat din rahe bas tohare dhyanawa ho...',
+    'Man jhume nache gawe jab tohara ke paave...','Bada nik laage raja tohre sangawa ho... 💕',
+    'Hum haeen piya ji ke patar tiriywa...','Piyawa hamar pataringawa ho...',
+    'Hum haeen piya ji ke patar tiriywa... 🌸','Basawa ke kain lekha patari kamariya ho...',
+    'Lachake la jaise lawangiya ke dariya ho...','Man dole laage jaise dole benawa ho... 🎵',
+    'Hum hayin raani tohar odhahul ke phoolawa...','Dil ke bajawe jhunjhunawa... ❤️',
+    'Hum haeen piya ji ke patar tiriywa...','Piyawa hamar pataringawa ho... 🔥❤️'
+  ]},
+  { name:'Dil Ke Kone Mein', em:'💔', file:'sad1.mp3', lyr:[
+    'Dil ke kone mein tera ghar hai...','Door ho ke bhi paas lagte ho...',
+    'Raat ke andheron mein teri yaad aati hai...','Tere bina yeh raat katati nahi...',
+    'Laut aa mere paas ek baar...','Tere bina neend nahi aati mujhe...'
+  ]},
+  { name:'Khushiyon Ka Tyohaar', em:'🎉', file:'happy1.mp3', lyr:[
+    'Jab se tu mili zindagi badal gayi...','Har pal rang birangi ho gayi...',
+    'Tu hi meri duniya meri jaan hai...','Rashi ke bina kuch nahi tha yahan...',
+    'Yeh pyaar hamesha yun hi rahega...'
+  ]},
+  { name:'Desi Dildar', em:'🪗', file:'desi1.mp3', lyr:[
+    'Gaon ki gali mein teri jhankiyan...','Hamaari Rashi sabse sundar laage...',
+    'Nainon se pyar barse jhaanjhar bole...','Desi dildar meri yaar baanis...'
+  ]},
+  { name:'Bhojpuri Dil', em:'🎵', file:'bhojpuri1.mp3', lyr:[
+    'Tu hamar jaan baanis Rashi...','Tore bina kuch na laage mane...',
+    'Tohar aankhi mein dil kho gailaa...','Tohar naam leke sone gailaa...',
+    'Hamaar pyaar sachcha sach ho...'
+  ]},
+  { name:'Ishq Wali Rashi', em:'💝', file:'love1.mp3', lyr:[
+    'Ishq ka rang chadha hai tujhse...','Rashi tu hi meri mohabbat hai...',
+    'Yeh ishq nahi aasaan Rashi...','Hamesha ke liye tera hoon main...'
+  ]}
+];
+
+var cuteMsgs = [
+  {e:'😂',m:'Rashi jab hum hasate hain na,<br>toh log kehte hain — <span class="hg">"Pagal hai!"</span><br>Par tu hasti hai toh lagela...<br><span class="hr">duniya ke sabse sundar awaaz! 😍</span>'},
+  {e:'🤪',m:'Hum thoda <span class="hg">pagal</span> zaroor hain Rashi...<br>par tore liye ek dum <span class="hr">serious</span> hain! 🫀<br>Tohar bina pagalpan bhi soona lagela... 😶'},
+  {e:'😜',m:'Hum <span class="hg">Google Maps</span> se bhi accurate hain...<br>kyunki hum hamesha <span class="hr">tore dil tak</span> ka raasta jaanilein! 🗺️❤️'},
+  {e:'🙈',m:'Jab tu naraaz hoti hai...<br>hum aankh band kar leilein! 🙈<br>Sochilein — aankhein nahi dekh raha,<br><span class="hr">toh gussa nahi dikha!</span> 😂'},
+  {e:'😝',m:'Jab tu photo bhejti hai,<br>hum <span class="hr">10-10 baar</span> dekhilein!<br>Par bolilein — "haan dekh liya" 😂💀'},
+  {e:'🤡',m:'Duniya kehti hai hum <span class="hg">joker</span> hain...<br>Par har joker ke peeche<br>ek <span class="hr">sachcha dil</span> hota hai! 🫀'},
+  {e:'💀',m:'Rashi jab tu ignore karti hai...<br>hum <span class="hg">literally</span> aise ho jaailein! 💀<br><span class="hr">Ek message karo na yaaar...</span> 😭'},
+  {e:'🫣',m:'Sachchi baat? Hum darailein tore saamne! 🫣<br>Dil mein <span class="hg">hazaar baatein</span> hoti hain,<br>par hont pe bas — <span class="hr">"haan... theek hai..."</span> 😅'},
+  {e:'🤦',m:'Tore ek muskaan mein<br>hum puri tarah <span class="hr">bewakoof</span> ho jaailein! 🤦<br>Yehi hota hai pyaar! 💕'},
+  {e:'😈',m:'Hum thoda <span class="hg">shaitan</span> zaroor hain...<br>par tore liye hum <span class="hr">devta</span> ban jaailein!<br>Bol do — <span class="hg">"Aayu, tum best ho!"</span> 😈✨'},
+  {e:'👻',m:'Jab raat ko neend nahi aavela...<br>hum ghost ban ke ghoomilein! 👻<br>Par tohar yaad aate hi...<br><span class="hr">sapna sundar ho jaala!</span> 🌙💕'},
+  {e:'🤤',m:'Rashi ke haath ka khana mile...<br>toh hum aise ho jaailein! 🤤<br><span class="hr">Ya sirf dil churana jaanti ho!</span> 😂❤️'},
+  {e:'😭',m:'Jab tu "good night" nahi bolta...<br>hum poori raat <span class="hg">aise</span> rote hain! 😭<br><span class="hr">Ek chota sa message karo na...</span> 🥺'},
+  {e:'🙃',m:'Duniya ulti lagti hai hume...<br>jab tak tu saath nahi hoti! 🙃<br><span class="hr">Tu hi hamari gravity hai Rashi!</span> 🌍💕'},
+  {e:'🤯',m:'Rashi — tore bina zindagi kaisi hoti? 🤯<br>Mind <span class="hg">blast</span> ho gaya!<br><span class="hr">Tum zaroori ho bas!</span> 💘'},
+  {e:'😤',m:'Jab tu phone nahi uthati! 😤<br>Par tore ek <span class="hg">"Sorry Aayu"</span> pe...<br><span class="hr">Sab mafi!</span> Hum pagal hain tore liye! 😂❤️'},
+  {e:'🥴',m:'Tore baare mein sochte sochte...<br>hum <span class="hg">aise</span> ho jaailein! 🥴<br><span class="hr">Bas tohar yaad hai dil mein!</span> 💭💕'},
+  {e:'😻',m:'Tore chehra dekhke hum <span class="hg">aise</span> ho jaailein! 😻<br>Dil se awaaz aavela —<br><span class="hr">"Yahi chahiye, aur kuch nahi!"</span> 💝'},
+  {e:'🤩',m:'Taj Mahal, Ganga kinara, pahad...<br>Par hum tore aankhen dekhen toh <span class="hg">sab fade</span> ho jaala!<br><span class="hr">Tu hi sabse sundar hai!</span> 🤩✨'},
+  {e:'🔥',m:'Hum <span class="hg">ordinary</span> nahi hain Rashi!<br>Hum woh hain jo tere liye...<br><span class="hr">kuch bhi kar sakta hai!</span> 🔥<br>Tohar Aayu — <span class="hg">ek dum fire!</span> 😎❤️‍🔥'}
+];
+
+var roasts = [
+  '😂 Rashi — tu phone uthati kyun nahi? Battery save karti hai ya hamse bachti hai? Dono ek hi baat hai! 💀',
+  '🔥 Tore "10 minute mein aati hoon" ka matlab — agla janam mein milenge! ⏰😭',
+  '😤 Rashi itna gussa karti hai ki hum darailein... par darke bhi dekhte rahilein — kyunki tu gusse mein bhi sundar lageli! 🥺',
+  '💀 Tu jab "okay" likhti hai — ek "okay" ke hazaar matlab! Hum dictionary banailein hain tore "okay" ka! 😂',
+  '🤡 "Main simple hoon." Simple?! Ek message mein 47 emotion! Tu toh Netflix series hai! 😵',
+  '😝 Tu 200 selfies click karti hai... ek bhi bheji humko nahi. Discrimination hai yeh! 📸😤',
+  '👻 Tore "haan soch lenge" ka matlab — "Bhool jao bhai!" 💀',
+  '🔥 Khana achha banati hai ya nahi, pata nahi... par dil churana? Usme PhD hai tore! 🎓❤️',
+  '😂 Tu naraaz hoti hai toh baat nahi karti... aur hum baar baar "kya hua" poochte hain — tu expert hai aur hum bakra! 🐐',
+  '😈 Hum kuch bolein, seedha ulta kare! Reverse psychology ki queen! 👑',
+  '🤦 Tore ek "hmm" ne hazaar neendein barbad ki! Itne meanings kaise hote hain bhai! 😵',
+  '🫣 Rashi jab smile karti hai — hum bhool jaate hain ki hum kya bol rahe the! Itna dangerous hai teri muskaan! ⚠️'
+];
+
+var photos = [
+  {src:'',label:'Hamaari pehli mulakaat 💕',ph:'🌹'},
+  {src:'',label:'Jab tu hansi thi 😍',ph:'😊'},
+  {src:'',label:'Tohar favourite jagah 🌸',ph:'🌸'},
+  {src:'',label:'Yeh wala din yaad hai? 💭',ph:'💭'},
+  {src:'',label:'Tu aur hum 🥰',ph:'🥰'},
+  {src:'',label:'Hamaara sapna 🌙',ph:'🌙'}
+];
+
+var spinSegs = [
+  {l:'100% Pyaar! 💯',c:'#e8395a'},{l:'Bahut Zyada! 🔥',c:'#f4c842'},
+  {l:'Infinity! ♾️',c:'#a855f7'},{l:'Dil se! 💖',c:'#ec4899'},
+  {l:'Sky se bhi zyada! 🌌',c:'#06b6d4'},{l:'Puri Duniya! 🌍',c:'#27ae60'},
+  {l:'Chaaand sitaron se! 🌙',c:'#ff6b35'},{l:'Sabse zyada! 👑',c:'#f4c842'}
+];
+
+// ══════════════════════════════════════════════════
+// HEARTS CANVAS
+(function(){
+  var c=document.getElementById('hCv'),ctx=c.getContext('2d');
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight;}
+  resize();window.addEventListener('resize',resize);
+  var hs=[];
+  for(var i=0;i<14;i++){hs.push({x:Math.random()*c.width,y:Math.random()*c.height,s:6+Math.random()*12,sp:.3+Math.random()*.7,o:.1+Math.random()*.25,dx:(Math.random()-.5)*.4});}
+  function dh(x,y,s,o){ctx.save();ctx.globalAlpha=o;ctx.fillStyle='#e8395a';ctx.beginPath();ctx.moveTo(x,y);ctx.bezierCurveTo(x,y-s*.3,x-s*.5,y-s*.8,x-s*.5,y-s*.5);ctx.bezierCurveTo(x-s*.5,y-s*1.1,x,y-s*1.2,x,y-s*.8);ctx.bezierCurveTo(x,y-s*1.2,x+s*.5,y-s*1.1,x+s*.5,y-s*.5);ctx.bezierCurveTo(x+s*.5,y-s*.8,x,y-s*.3,x,y);ctx.fill();ctx.restore();}
+  (function loop(){ctx.clearRect(0,0,c.width,c.height);hs.forEach(function(h){h.y-=h.sp;h.x+=h.dx;if(h.y<-30){h.y=c.height+20;h.x=Math.random()*c.width;}dh(h.x,h.y,h.s,h.o);});requestAnimationFrame(loop);})();
+})();
+
+// PETALS
+(function(){
+  var cols=['#e8395a','#ffb3c6','#f4c842','#ff69b4'];
+  for(var i=0;i<16;i++){var p=document.createElement('div');p.className='petal';p.style.cssText='left:'+Math.random()*100+'vw;background:'+cols[Math.floor(Math.random()*cols.length)]+';animation-duration:'+(4+Math.random()*6)+'s;animation-delay:'+(Math.random()*8)+'s;width:'+(8+Math.random()*10)+'px;height:'+(10+Math.random()*12)+'px;';document.body.appendChild(p);}
+})();
+
+// DATE
+(function(){var d=new Date(),mo=['January','February','March','April','May','June','July','August','September','October','November','December'];document.getElementById('lDate').textContent=d.getDate()+' '+mo[d.getMonth()]+' '+d.getFullYear();})();
+
+// ══════════════════════════════════════════════════
+// HEART TAP
+var taps=0,letterOn=false;
+document.getElementById('hWrap').addEventListener('click',function(){
+  taps++;
+  var h=document.getElementById('bHeart');
+  h.style.transform='scale(.82)';setTimeout(function(){h.style.transform='';},120);
+  burst();
+  if(taps<3){var ms=['Ek baar aur... 💕','Thoda aur... 🌸','Aa raha hai... 🔥'];document.getElementById('tapMsg').textContent=ms[Math.min(taps-1,2)];}
+  else{showLetter();}
+});
+document.getElementById('backBtn').addEventListener('click',hideLetter);
+
+function showLetter(){
+  if(letterOn)return;letterOn=true;
+  document.getElementById('hSec').style.display='none';
+  document.getElementById('lSec').style.display='flex';
+  setTimeout(function(){document.querySelectorAll('#lBody p').forEach(function(p,i){setTimeout(function(){p.classList.add('vis');},i*200);});},100);
+}
+function hideLetter(){
+  letterOn=false;taps=0;
+  document.getElementById('lSec').style.display='none';
+  document.getElementById('hSec').style.display='flex';
+  document.getElementById('tapMsg').textContent='';
+  document.querySelectorAll('#lBody p').forEach(function(p){p.classList.remove('vis');});
+}
+
+function burst(){
+  var cv=document.getElementById('bCv'),ctx=cv.getContext('2d');
+  var cols=['#e8395a','#f4c842','#ff69b4','#fff'],pts=[];
+  for(var i=0;i<24;i++){var a=Math.random()*Math.PI*2,sp=2+Math.random()*4;pts.push({x:150,y:150,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:1,c:cols[Math.floor(Math.random()*cols.length)],s:3+Math.random()*4});}
+  (function fr(){ctx.clearRect(0,0,300,300);var alive=false;pts.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=.12;p.life-=.025;if(p.life>0){alive=true;ctx.globalAlpha=p.life;ctx.fillStyle=p.c;ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.fill();}});ctx.globalAlpha=1;if(alive)requestAnimationFrame(fr);})();
+}
+
+// ══════════════════════════════════════════════════
+// MASTER RIGHT FAB (Music + Jokes)
+var rPanelOpen = false;
+document.getElementById('masterRightBtn').addEventListener('click', function(){
+  rPanelOpen = !rPanelOpen;
+  document.getElementById('rightPanel').classList.toggle('on', rPanelOpen);
+  this.classList.toggle('open', rPanelOpen);
+  this.textContent = rPanelOpen ? '✕' : '🎶';
+  // close left if open
+  if(rPanelOpen && lPanelOpen){ lPanelOpen=false; document.getElementById('leftPanel').classList.remove('on'); document.getElementById('masterLeftBtn').classList.remove('open'); document.getElementById('masterLeftBtn').textContent='💫'; }
+});
+// Music song buttons
+for(var i=0;i<6;i++){(function(idx){document.getElementById('mo'+idx).addEventListener('click',function(){openMusic(idx);rPanelOpen=false;document.getElementById('rightPanel').classList.remove('on');document.getElementById('masterRightBtn').classList.remove('open');document.getElementById('masterRightBtn').textContent='🎶';});;})(i);}
+// Funny/joke buttons
+for(var j=0;j<20;j++){(function(idx){document.getElementById('cm'+idx).addEventListener('click',function(){showCute(idx);rPanelOpen=false;document.getElementById('rightPanel').classList.remove('on');document.getElementById('masterRightBtn').classList.remove('open');document.getElementById('masterRightBtn').textContent='🎶';});;})(j);}
+
+// MASTER LEFT FAB (Features)
+var lPanelOpen = false;
+document.getElementById('masterLeftBtn').addEventListener('click', function(){
+  lPanelOpen = !lPanelOpen;
+  document.getElementById('leftPanel').classList.toggle('on', lPanelOpen);
+  this.classList.toggle('open', lPanelOpen);
+  this.textContent = lPanelOpen ? '✕' : '💫';
+  // close right if open
+  if(lPanelOpen && rPanelOpen){ rPanelOpen=false; document.getElementById('rightPanel').classList.remove('on'); document.getElementById('masterRightBtn').classList.remove('open'); document.getElementById('masterRightBtn').textContent='🎶'; }
+});
+function closeLPanel(){ lPanelOpen=false; document.getElementById('leftPanel').classList.remove('on'); document.getElementById('masterLeftBtn').classList.remove('open'); document.getElementById('masterLeftBtn').textContent='💫'; }
+
+
+// MUSIC PLAYER
+var mAu=document.getElementById('mAudio'),lyrTmr=null,lyrIdx=0;
+function openMusic(i){
+  var s=songs[i];
+  document.getElementById('mpName').textContent=s.name;
+  document.getElementById('mpEm').textContent=s.em;
+  mAu.src=BASE+s.file;
+  document.getElementById('musicPg').classList.add('on');
+  buildLyr(s.lyr);
+  mAu.play().catch(function(){});
+  document.getElementById('playBtn').textContent='⏸';
+  document.getElementById('vinyl').classList.add('pl');
+}
+document.getElementById('musicX').addEventListener('click',function(){
+  mAu.pause();clearInterval(lyrTmr);
+  document.getElementById('vinyl').classList.remove('pl');
+  document.getElementById('playBtn').textContent='▶';
+  document.getElementById('musicPg').classList.remove('on');
+});
+document.getElementById('playBtn').addEventListener('click',function(){
+  if(mAu.paused){mAu.play();this.textContent='⏸';document.getElementById('vinyl').classList.add('pl');}
+  else{mAu.pause();this.textContent='▶';document.getElementById('vinyl').classList.remove('pl');}
+});
+function buildLyr(lyr){
+  var a=document.getElementById('lyrArea');a.innerHTML='';lyrIdx=0;
+  lyr.forEach(function(l,i){var d=document.createElement('div');d.className='ll';d.textContent=l;d.addEventListener('click',function(){setLyr(i);});a.appendChild(d);});
+  setLyr(0);clearInterval(lyrTmr);
+  lyrTmr=setInterval(function(){var ls=document.querySelectorAll('.ll');if(!ls.length)return;lyrIdx=(lyrIdx+1)%ls.length;setLyr(lyrIdx);},4000);
+}
+function setLyr(i){
+  document.querySelectorAll('.ll').forEach(function(l,idx){l.classList.remove('act','dn');if(idx===i)l.classList.add('act');else if(idx<i)l.classList.add('dn');});
+  var el=document.querySelectorAll('.ll')[i];if(el)el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// ══════════════════════════════════════════════════
+// ══════════════════════════════════════════════════
+// FUNNY FAB + CUTE MSGS
+
+function showCute(i){
+  var d=cuteMsgs[i];
+  document.getElementById('cuteEm').textContent=d.e;
+  document.getElementById('cuteMsg').innerHTML=d.m;
+  document.getElementById('cuteOv').classList.add('on');
+  spawnConf();
+}
+document.getElementById('cuteOv').addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
+document.getElementById('cuteClose').addEventListener('click',function(){document.getElementById('cuteOv').classList.remove('on');});
+
+function spawnConf(){
+  var c=document.getElementById('confWrap');c.innerHTML='';
+  var cols=['#e8395a','#f4c842','#ff69b4','#ff9800','#7dffb3','#c084fc'];
+  for(var i=0;i<18;i++){var d=document.createElement('div');var sz=5+Math.random()*7;d.style.cssText='position:absolute;width:'+sz+'px;height:'+sz+'px;border-radius:50%;background:'+cols[Math.floor(Math.random()*cols.length)]+';left:'+Math.random()*100+'%;top:100%;animation:cU '+(0.8+Math.random()*.8)+'s '+(Math.random()*.5)+'s ease-out forwards;pointer-events:none';c.appendChild(d);}
+}
+(function(){var s=document.createElement('style');s.textContent='@keyframes cU{from{transform:translateY(0) scale(1);opacity:1}to{transform:translateY(-280px) scale(.3) rotate(360deg);opacity:0}}';document.head.appendChild(s);})();
+
+// ══════════════════════════════════════════════════
+// PROPOSAL
+var rOpen=false,pDone=false,noMv=0;
+document.getElementById('propFab').addEventListener('click',function(){
+  closeLPanel();
+  rOpen=false;pDone=false;noMv=0;
+  document.getElementById('rBox').textContent='💝';document.getElementById('rBox').style.animation='';
+  document.getElementById('rGem').className='rgem';
+  document.getElementById('pHint').style.display='';
+  document.getElementById('pQ').className='pq';document.getElementById('pSub').className='psub';
+  document.getElementById('pBtns').className='pbtns';document.getElementById('pResp').className='presp';
+  document.getElementById('btnNo').style.transform='';document.getElementById('btnNo').style.display='';
+  document.getElementById('propPg').classList.add('on');
+});
+document.getElementById('propX').addEventListener('click',function(){stopFw();document.getElementById('propPg').classList.remove('on');});
+
+document.getElementById('rWrap').addEventListener('click',function(){
+  if(rOpen)return;rOpen=true;
+  document.getElementById('rBox').textContent='📦';
+  document.getElementById('rGem').className='rgem sh';
+  document.getElementById('pHint').style.display='none';
+  setTimeout(function(){
+    document.getElementById('pQ').className='pq sh';
+    document.getElementById('pSub').className='psub sh';
+    document.getElementById('pBtns').className='pbtns sh';
+  },500);
+});
+
+document.getElementById('btnYes').addEventListener('click',function(){
+  if(pDone)return;pDone=true;
+  document.getElementById('pBtns').className='pbtns';
+  document.getElementById('pQ').className='pq';document.getElementById('pSub').className='psub';
+  document.getElementById('respEm').textContent='💍🎉';
+  document.getElementById('respT').textContent='HAAN JI! Hum Ek Hain! 💕';
+  document.getElementById('respS').textContent='Tohar yeh jawab... dil khush kar diya Rashi! ❤️‍🔥';
+  document.getElementById('pResp').className='presp sh';
+  startFw();
+});
+
+document.getElementById('btnNo').addEventListener('mouseover',moveNo);
+document.getElementById('btnNo').addEventListener('touchstart',moveNo);
+function moveNo(){
+  noMv++;var btn=document.getElementById('btnNo');
+  var mx=window.innerWidth-160,my=window.innerHeight-80;
+  btn.style.transform='translate('+(Math.random()*mx-mx/2)+'px,'+(Math.random()*my-my/2)+'px)';
+  btn.style.transition='transform .3s cubic-bezier(.34,1.56,.64,1)';
+  if(noMv>=5)btn.style.display='none';
+}
+
+var fwOn=false,fwPts=[];
+function startFw(){
+  var cv=document.getElementById('fwCv'),ctx=cv.getContext('2d');
+  cv.width=window.innerWidth;cv.height=window.innerHeight;cv.classList.add('on');fwOn=true;fwPts=[];
+  var fc=['#f4c842','#e8395a','#ff69b4','#7dffb3','#c084fc','#ff9800','#fff'];
+  function burst(){for(var i=0;i<40;i++){var a=(Math.PI*2/40)*i,sp=2+Math.random()*5;fwPts.push({x:Math.random()*cv.width,y:Math.random()*cv.height*.6,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:1,dc:.015+Math.random()*.01,s:3+Math.random()*4,c:fc[Math.floor(Math.random()*fc.length)]});}}
+  burst();burst();burst();
+  var bi=setInterval(function(){if(fwOn)burst();},800);
+  (function loop(){if(!fwOn)return;ctx.clearRect(0,0,cv.width,cv.height);for(var i=fwPts.length-1;i>=0;i--){var p=fwPts[i];p.x+=p.vx;p.y+=p.vy;p.vy+=.1;p.life-=p.dc;if(p.life<=0){fwPts.splice(i,1);continue;}ctx.globalAlpha=p.life;ctx.fillStyle=p.c;ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;requestAnimationFrame(loop);})();
+  setTimeout(function(){clearInterval(bi);fwOn=false;cv.classList.remove('on');},5000);
+}
+function stopFw(){fwOn=false;document.getElementById('fwCv').classList.remove('on');}
+
+// ══════════════════════════════════════════════════
+// ROAST
+var rIdx=-1;
+document.getElementById('roastFab').addEventListener('click',function(){
+  closeLPanel();
+  rIdx=-1;document.getElementById('rTxt').textContent='Button dabao aur suno! 😈';
+  document.getElementById('rCnt').textContent='';document.getElementById('roastPg').classList.add('on');
+});
+document.getElementById('roastX').addEventListener('click',function(){document.getElementById('roastPg').classList.remove('on');});
+document.getElementById('roastBtn').addEventListener('click',function(){
+  rIdx=(rIdx+1)%roasts.length;
+  var el=document.getElementById('rTxt');el.classList.add('fd');
+  setTimeout(function(){el.innerHTML=roasts[rIdx];el.classList.remove('fd');document.getElementById('rCnt').textContent=(rIdx+1)+' / '+roasts.length+' 🔥';},300);
+});
+
+// ══════════════════════════════════════════════════
+// PHOTO WALL
+document.getElementById('photoFab').addEventListener('click',function(){
+  closeLPanel();
+  var g=document.getElementById('pGrid');g.innerHTML='';
+  photos.forEach(function(p,i){
+    var c=document.createElement('div');c.className='pcard';
+    if(p.src){c.innerHTML='<img src="'+p.src+'" alt="'+p.label+'">';}
+    else{c.innerHTML='<div class="pph">'+p.ph+'</div><div class="plbl">'+p.label+'</div>';}
+    c.addEventListener('click',function(){if(p.src){document.getElementById('lbImg').src=p.src;document.getElementById('lbCap').textContent=p.label;document.getElementById('lb').classList.add('on');}});
+    g.appendChild(c);
+  });
+  document.getElementById('photoPg').classList.add('on');
+});
+document.getElementById('photoX').addEventListener('click',function(){document.getElementById('photoPg').classList.remove('on');});
+document.getElementById('lb').addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
+document.getElementById('lbX').addEventListener('click',function(){document.getElementById('lb').classList.remove('on');});
+
+// ══════════════════════════════════════════════════
+// SECRET MESSAGE
+var sIn='';
+document.getElementById('secretFab').addEventListener('click',function(){
+  closeLPanel();
+  sIn='';updDots();
+  document.getElementById('sLock').textContent='🔒';
+  document.getElementById('sPad').style.display='grid';
+  document.getElementById('sDots').style.display='flex';
+  document.getElementById('sRev').classList.remove('on');
+  document.getElementById('secretPg').classList.add('on');
+});
+document.getElementById('secretX').addEventListener('click',function(){document.getElementById('secretPg').classList.remove('on');});
+document.getElementById('sResetBtn').addEventListener('click',function(){
+  sIn='';updDots();
+  document.getElementById('sLock').textContent='🔒';
+  document.getElementById('sPad').style.display='grid';
+  document.getElementById('sDots').style.display='flex';
+  document.getElementById('sRev').classList.remove('on');
+});
+
+document.querySelectorAll('.sk').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var v=this.getAttribute('data-v');
+    if(v==='del'){sIn=sIn.slice(0,-1);}
+    else if(v==='clr'){sIn='';}
+    else if(sIn.length<4){sIn+=v;}
+    updDots();
+    if(sIn.length===4)setTimeout(checkCode,200);
+  });
+});
+function updDots(){for(var i=0;i<4;i++)document.getElementById('sd'+i).className='sd'+(i<sIn.length?' fl':'');}
+function checkCode(){
+  if(sIn===SECRET_CODE){
+    document.getElementById('sLock').textContent='🔓';
+    document.getElementById('sPad').style.display='none';
+    document.getElementById('sDots').style.display='none';
+    document.getElementById('sMsg').innerHTML='Rashi... yeh message sirf tore liye likha hai! 🌹<br><br>Jab bhi dil udaas ho, yaad rakho —<br>Garhani mein ek pagal hai jo<br>hamesha tore liye dua karta hai. 🤲<br><br>Tu hamar jaan baanis... sach mein. ❤️‍🔥';
+    document.getElementById('sRev').classList.add('on');
+  } else {
+    for(var i=0;i<4;i++)document.getElementById('sd'+i).className='sd wr';
+    var ds=document.getElementById('sDots');
+    ds.style.animation='shake .4s ease';
+    setTimeout(function(){sIn='';updDots();ds.style.animation='';},460);
+  }
+}
+(function(){var s=document.createElement('style');s.textContent='@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}';document.head.appendChild(s);})();
+
+// ══════════════════════════════════════════════════
+// SPIN WHEEL
+var sorrySelectedReason = '';
+document.getElementById('sorryFab').addEventListener('click',function(){closeLPanel();document.getElementById('sorryPg').classList.add('on');resetSorry();});
+document.getElementById('sorryX').addEventListener('click',function(){document.getElementById('sorryPg').classList.remove('on');});
+
+document.querySelectorAll('.sorry-reason-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.sorry-reason-btn').forEach(function(b){b.classList.remove('sel');});
+    this.classList.add('sel');
+    sorrySelectedReason = this.getAttribute('data-reason');
+    generateSorryLetter();
+  });
+});
+
+document.getElementById('sorryGenBtn').addEventListener('click',function(){generateSorryLetter();});
+document.getElementById('sorryAgainBtn').addEventListener('click',function(){
+  // show reason screen again for new selection
+  document.getElementById('sorryResult').style.display='none';
+  document.getElementById('sorryContent').style.display='block';
+  document.getElementById('sorryLoading').style.display='none';
+  document.querySelectorAll('.sorry-reason-btn').forEach(function(b){b.classList.remove('sel');});
+  sorrySelectedReason='';
+});
+
+function resetSorry(){
+  sorrySelectedReason='';
+  document.querySelectorAll('.sorry-reason-btn').forEach(function(b){b.classList.remove('sel');});
+  document.getElementById('sorryContent').style.display='block';
+  document.getElementById('sorryResult').style.display='none';
+  document.getElementById('sorryLoading').style.display='none';
+}
+
+async function generateSorryLetter(){
+  var reason = sorrySelectedReason || 'being imperfect';
+  document.getElementById('sorryContent').style.display='none';
+  document.getElementById('sorryResult').style.display='none';
+  document.getElementById('sorryLoading').style.display='flex';
+  try{
+    var resp = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:500,
+        messages:[{role:'user',content:'Write a heartfelt sorry letter from a boy named Aayu to his girlfriend Rashi. The reason for apologizing is: "'+reason+'". Write in a mix of Hindi and English (Hinglish). Keep it emotional, sweet, and genuine. 3-4 short paragraphs. Start with "Meri Pyaari Rashi," and end naturally. No sign-off needed. Keep it under 200 words.'}]
+      })
+    });
+    var data = await resp.json();
+    var text = data.content && data.content[0] ? data.content[0].text : 'Sorry Rashi... dil se maafi maangta hoon. Tu meri duniya hai. ❤️';
+    document.getElementById('sorryLoading').style.display='none';
+    document.getElementById('sorryText').textContent=text;
+    document.getElementById('sorryResult').style.display='block';
+  }catch(e){
+    document.getElementById('sorryLoading').style.display='none';
+    document.getElementById('sorryText').textContent='Meri Pyaari Rashi,\n\nMaafi maango toh lafz kam pad jaate hain... par dil se ek hi baat hai — tum hamaari sabse zaroori insaan ho. Galti hui, par pyaar kabhi kam nahi hua. ❤️\n\nPlease maaf karo...';
+    document.getElementById('sorryResult').style.display='block';
+  }
+}
+
+// ══════════════════════════════════════════════════
+// AI THERAPIST
+var therapySelectedMood = '';
+document.getElementById('therapyFab').addEventListener('click',function(){closeLPanel();document.getElementById('therapyPg').classList.add('on');resetTherapy();});
+document.getElementById('therapyX').addEventListener('click',function(){document.getElementById('therapyPg').classList.remove('on');});
+
+document.querySelectorAll('.therapy-mood-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.therapy-mood-btn').forEach(function(b){b.classList.remove('sel');});
+    this.classList.add('sel');
+    therapySelectedMood = this.getAttribute('data-mood');
+    document.getElementById('therapyBtnWrap').style.display='flex';
+    callTherapist(therapySelectedMood, false);
+  });
+});
+
+document.getElementById('therapyTalkBtn').addEventListener('click',function(){if(therapySelectedMood)callTherapist(therapySelectedMood, true);});
+
+function resetTherapy(){
+  therapySelectedMood='';
+  document.querySelectorAll('.therapy-mood-btn').forEach(function(b){b.classList.remove('sel');});
+  document.getElementById('therapyBtnWrap').style.display='none';
+  document.getElementById('therapyBubble').innerHTML='<div style="text-align:center;padding:10px 0;"><div style="font-size:3rem;margin-bottom:8px;">🤗</div><div style="font-family:\'Caveat\',cursive;color:rgba(52,211,153,.7);font-size:1.05rem;">Mood choose karo upar se, phir baat karte hain!</div></div>';
+}
+
+async function callTherapist(mood, isRefresh){
+  document.getElementById('therapyBubble').innerHTML='<div class="therapy-spinner"></div>';
+  // scroll bubble area to top
+  var sc=document.querySelector('.therapy-scroll');if(sc)sc.scrollTop=0;
+  var variation = isRefresh ? ['Give a completely different comforting thought. Be more specific and personal.','Share a new uplifting perspective, different from before.','Offer a fresh encouraging message with a different angle.'][Math.floor(Math.random()*3)] : '';
+  try{
+    var resp = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:400,
+        messages:[{role:'user',content:'You are a warm, caring AI therapist for a girl named Rashi. She is feeling: "'+mood+'". Her boyfriend\'s name is Aayu who loves her deeply. Write a comforting, empathetic message to Rashi in Hinglish (mix of Hindi and English). Be warm, validating, and uplifting. 2-3 short paragraphs. Use emojis naturally. Make her feel heard and loved. Under 150 words. '+(variation||'Make it feel personal and genuine.')}]
+      })
+    });
+    var data = await resp.json();
+    var text = data.content && data.content[0] ? data.content[0].text : 'Rashi... jo feel ho raha hai woh bilkul valid hai. 💚 Tu akeli nahi hai. Aayu hamesha tere saath hai, aur tere dil ki har baat sunne ke liye ready hai. 🌿';
+    document.getElementById('therapyBubble').innerHTML='<div class="therapy-text">'+text.replace(/\n/g,'<br>')+'</div>';
+  }catch(e){
+    var fallbacks=['Rashi... tu bahut zyada strong hai, chahe abhi aisa na lage. 💚<br><br>Jo bhi ho raha hai — yeh sab temporary hai. Aayu chahta hai ki tu khush rahe, aur woh hamesha tere liye available hai. Bas ek message karo! 🌿',
+    'Apne aap ko time do Rashi... healing hurry mein nahi hoti. 💚<br><br>Tu itni precious hai — apna khayal rakhna bhi zaroori hai. Aayu ke saath baat karo — woh sab samjhega. 🫶',
+    'Tere feelings matter karte hain Rashi! 💚<br><br>Kabhi kabhi bas kisi ka saath chahiye hota hai — Aayu wahan hai. Tum dono milke sab handle kar sakte ho! 🌿✨'];
+    document.getElementById('therapyBubble').innerHTML='<div class="therapy-text">'+fallbacks[Math.floor(Math.random()*fallbacks.length)]+'</div>';
+  }
+}
+
+// ══════════════════════════════════════════════════
+// SLIDESHOW
+var slideData = [
+  {em:'🌹',cap:'Jab pehli baar baat hui thi... dil dhadak gaya tha! 💕'},
+  {em:'😊',cap:'Teri woh pehli muskaan — abhi bhi yaad hai! 🌸'},
+  {em:'🌙',cap:'Woh raat jab ghante bhar baatein ki... 💭'},
+  {em:'🥰',cap:'Tu aur hum — ek perfect team! 🫶'},
+  {em:'🌸',cap:'Tore bina har jagah sooni lagti hai... 💜'},
+  {em:'💍',cap:'Ek din sach mein milenge — promise! ❤️‍🔥'},
+  {em:'🎉',cap:'Tore saath har din tyohaar jaisa hai! 🎊'},
+  {em:'🌙',cap:'Sapne mein bhi sirf tu aati hai... 🌟'},
+];
+var slideIdx=0, slideTimer=null, slidePlaying=true;
+
+document.getElementById('slideFab').addEventListener('click',function(){closeLPanel();initSlideshow();document.getElementById('slidePg').classList.add('on');});
+document.getElementById('slideX').addEventListener('click',function(){clearInterval(slideTimer);document.getElementById('slidePg').classList.remove('on');});
+document.getElementById('slidePrev').addEventListener('click',function(){clearInterval(slideTimer);goSlide(slideIdx-1);if(slidePlaying)slideTimer=setInterval(function(){goSlide(slideIdx+1);},3000);});
+document.getElementById('slideNext').addEventListener('click',function(){clearInterval(slideTimer);goSlide(slideIdx+1);if(slidePlaying)slideTimer=setInterval(function(){goSlide(slideIdx+1);},3000);});
+document.getElementById('slidePlayPause').addEventListener('click',function(){slidePlaying=!slidePlaying;this.textContent=slidePlaying?'⏸':'▶';if(slidePlaying){slideTimer=setInterval(function(){goSlide(slideIdx+1);},3000);}else{clearInterval(slideTimer);}});
+
+function initSlideshow(){
+  var frame=document.getElementById('slideFrame');frame.innerHTML='';
+  var dots=document.getElementById('slideDots');dots.innerHTML='';
+  slideData.forEach(function(s,i){
+    var div=document.createElement('div');div.className='slide-item'+(i===0?' on':'');
+    div.innerHTML='<span class="slide-em">'+s.em+'</span><div class="slide-cap">'+s.cap+'</div>';
+    frame.appendChild(div);
+    var dot=document.createElement('div');dot.className='slide-dot'+(i===0?' on':'');
+    dot.addEventListener('click',function(){goSlide(i);});
+    dots.appendChild(dot);
+  });
+  slideIdx=0;updSlide();
+  clearInterval(slideTimer);if(slidePlaying)slideTimer=setInterval(function(){goSlide(slideIdx+1);},3000);
+}
+function goSlide(i){slideIdx=((i%slideData.length)+slideData.length)%slideData.length;updSlide();}
+function updSlide(){
+  document.querySelectorAll('.slide-item').forEach(function(el,i){el.classList.toggle('on',i===slideIdx);});
+  document.querySelectorAll('.slide-dot').forEach(function(el,i){el.classList.toggle('on',i===slideIdx);});
+  document.getElementById('slideCounter').textContent=(slideIdx+1)+' / '+slideData.length;
+}
+
+// ══════════════════════════════════════════════════
+// COMPLIMENT MACHINE
+var compIdx=-1, compLoading=false;
+var localCompliments=[
+  '🌟 Rashi... tori aankhen duniya ki sabse khoobsoorat cheez hain. Seriously! 😍',
+  '💫 Tu itni strong hai — challenges ko tum aise handle karti ho jaise queen! 👑',
+  '🌹 Jab tu hasti hai na... kamre mein roshni aa jaati hai. Sach mein! ☀️',
+  '✨ Rashi — teri personality ek dum unique hai. Koi tujh jaisa nahi is duniya mein! 💎',
+  '💕 Tu jitni baahir se sundar hai, utni hi andar se bhi! Pure gold hai tu! 💛',
+  '🔥 Teri intelligence? Next level! Brain + beauty — complete package hai tu! 🧠',
+  '🌸 Tore paas ek aisa jaadu hai ki saare log tumhare taraf attract ho jaate hain! 🫶',
+  '💜 Rashi — tore bina yeh duniya thodi si incomplete lagti hai. Tu bahut zaroori hai! 🌍',
+  '⭐ Koi bhi problem ho — tu uss mein bhi solution dhundh leti hai. Superhero hai tu! 🦸‍♀️',
+  '💝 Teri caring nature dekh ke dil aur bhi bhar jaata hai. Tu ek gem hai! 💎',
+];
+
+document.getElementById('compFab').addEventListener('click',function(){closeLPanel();compIdx=-1;document.getElementById('compText').textContent='Button dabao Rashi... 🌟';document.getElementById('compCnt').textContent='';document.getElementById('compPg').classList.add('on');});
+document.getElementById('compX').addEventListener('click',function(){document.getElementById('compPg').classList.remove('on');});
+document.getElementById('compBtn').addEventListener('click',function(){if(!compLoading)generateCompliment();});
+
+async function generateCompliment(){
+  compLoading=true;
+  var el=document.getElementById('compText');
+  el.classList.add('fd');
+  setTimeout(async function(){
+    el.innerHTML='<span class="comp-loading">✨ Soch raha hoon...</span>';
+    el.classList.remove('fd');
+    try{
+      var resp = await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          model:'claude-sonnet-4-20250514',
+          max_tokens:120,
+          messages:[{role:'user',content:'Write ONE short sweet compliment for a girl named Rashi from her boyfriend Aayu. Write in Hinglish (Hindi+English mix). Be creative, specific, and make her smile. Include 1-2 emojis. Max 2 sentences. Make each one unique and different.'}]
+        })
+      });
+      var data = await resp.json();
+      var text = data.content && data.content[0] ? data.content[0].text : localCompliments[Math.floor(Math.random()*localCompliments.length)];
+      compIdx++;
+      el.classList.add('fd');
+      setTimeout(function(){el.textContent=text;el.classList.remove('fd');document.getElementById('compCnt').textContent=compIdx+1+' compliment mile! ⭐';compLoading=false;},300);
+    }catch(e){
+      compIdx++;
+      var c=localCompliments[compIdx%localCompliments.length];
+      el.classList.add('fd');
+      setTimeout(function(){el.textContent=c;el.classList.remove('fd');document.getElementById('compCnt').textContent=compIdx+1+' compliment mile! ⭐';compLoading=false;},300);
+    }
+  },200);
+}
+
+// ══════════════════════════════════════════════════
+// VIRTUAL HUG
+var hugMessages=[
+  'Aayu ki taraf se ek bahut bada hug! 🤗💕',
+  'Tu hamaari jaan hai Rashi... yeh hug dil se hai! ❤️',
+  'Chhoti si tang aai ho? Yeh hug sab theek kar dega! 🫂',
+  'Tujhe dekh ke hi hug dene ka man karta hai! 💜',
+  'Yeh wali hug thodi extra special hai — sirf tore liye! ✨',
+  'Bahut pyaar hai... shab-e-hug! 😂💕',
+];
+var hugOn=false, hugTimeout=null, hugCtx=null;
+
+document.getElementById('hugFab').addEventListener('click',function(){closeLPanel();hugOn=false;document.getElementById('hugWrap').classList.remove('hugging');document.getElementById('hugMsg').classList.remove('on');document.getElementById('hugPg').classList.add('on');});
+document.getElementById('hugX').addEventListener('click',function(){clearTimeout(hugTimeout);document.getElementById('hugPg').classList.remove('on');});
+
+function doHug(){
+  var wrap=document.getElementById('hugWrap');
+  wrap.classList.add('hugging');
+  // heartbeat sound via AudioContext
+  try{
+    var ctx=new (window.AudioContext||window.webkitAudioContext)();
+    function beat(){var o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.value=60;g.gain.setValueAtTime(0,ctx.currentTime);g.gain.linearRampToValueAtTime(.4,ctx.currentTime+.05);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.3);o.start(ctx.currentTime);o.stop(ctx.currentTime+.3);}
+    beat();setTimeout(beat,350);setTimeout(beat,2000);setTimeout(beat,2350);
+  }catch(e){}
+  var msg=document.getElementById('hugMsg');
+  msg.textContent=hugMessages[Math.floor(Math.random()*hugMessages.length)];
+  msg.classList.add('on');
+  hugTimeout=setTimeout(function(){wrap.classList.remove('hugging');},2000);
+}
+
+document.getElementById('hugWrap').addEventListener('click',doHug);
+document.getElementById('hugBtn').addEventListener('click',doHug);
+
+// ══════════════════════════════════════════════════
+// JUMPSCARE
+var jumpScares=[
+  {em:'🐸',reveal:'MEINDAK! Dar gayi? 😂 Aayu ne kiya yeh! Haha!'},
+  {em:'🤡',reveal:'BOO! Joker aaya! Par scary nahi — bas pagal hai! 🤣'},
+  {em:'😈',reveal:'OOGA BOOGA! Rashi shocked ho gayi! 😂💀'},
+  {em:'🦆',reveal:'QUACK QUACK! Duck ne attack kiya! 🦆😂'},
+  {em:'🙈',reveal:'Aankhein kholo! Kuch nahi tha — bas Aayu ka pyaar tha! ❤️😂'},
+  {em:'🐙',reveal:'OCTOPUS ATTACK! 8 arms — sab tore liye hug! 🐙💕'},
+  {em:'🌚',reveal:'RAAT AAYI! ... aur Aayu ka pyaar bhi! 🌚😂❤️'},
+  {em:'🫠',reveal:'Pighal gayi? Aayu ne pyaar se pighlaya! 🫠💕'},
+];
+
+document.getElementById('jumpFab').addEventListener('click',function(){
+  closeLPanel();
+  document.getElementById('jumpSetup').style.display='flex';
+  document.getElementById('jumpScare').classList.remove('on');
+  document.getElementById('jumpPg').classList.add('on');
+});
+document.getElementById('jumpX').addEventListener('click',function(){
+  // clear any pending countdown
+  var old=document.getElementById('jumpCount');if(old&&old.parentNode)old.parentNode.removeChild(old);
+  document.getElementById('jumpPg').classList.remove('on');
+});
+document.getElementById('jumpAgainBtn').addEventListener('click',function(){
+  document.getElementById('jumpScare').classList.remove('on');
+  document.getElementById('jumpSetup').style.display='flex';
+});
+
+document.getElementById('jumpStartBtn').addEventListener('click',function(){
+  document.getElementById('jumpSetup').style.display='none';
+  // Remove any old countdown
+  var oldC=document.getElementById('jumpCount');if(oldC&&oldC.parentNode)oldC.parentNode.removeChild(oldC);
+
+  var countdown=3;
+  var tempDiv=document.createElement('div');
+  tempDiv.id='jumpCount';
+  tempDiv.style.cssText='color:#fff;font-size:8rem;font-family:"Caveat",cursive;text-align:center;text-shadow:0 0 40px rgba(255,255,255,.8);';
+  tempDiv.textContent=countdown;
+  document.getElementById('jumpPg').appendChild(tempDiv);
+
+  function tick(){
+    countdown--;
+    if(countdown>0){
+      tempDiv.textContent=countdown;
+      setTimeout(tick,700);
+    } else {
+      // Remove countdown safely
+      if(tempDiv.parentNode) tempDiv.parentNode.removeChild(tempDiv);
+
+      // Pick random scare
+      var s=jumpScares[Math.floor(Math.random()*jumpScares.length)];
+      document.getElementById('jumpEm').textContent=s.em;
+      document.getElementById('jumpReveal').textContent=s.reveal;
+      document.getElementById('jumpScare').classList.add('on');
+
+      // Screen flash
+      var fl=document.createElement('div');
+      fl.style.cssText='position:fixed;inset:0;background:#fff;z-index:9998;pointer-events:none;opacity:1;transition:opacity 0.25s;';
+      document.body.appendChild(fl);
+      setTimeout(function(){fl.style.opacity='0';setTimeout(function(){if(fl.parentNode)fl.parentNode.removeChild(fl);},280);},60);
+
+      // Scary sound
+      try{
+        var actx=new(window.AudioContext||window.webkitAudioContext)();
+        var o=actx.createOscillator(),g=actx.createGain();
+        o.connect(g);g.connect(actx.destination);
+        o.type='sawtooth';
+        o.frequency.setValueAtTime(600,actx.currentTime);
+        o.frequency.exponentialRampToValueAtTime(80,actx.currentTime+0.5);
+        g.gain.setValueAtTime(0.5,actx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001,actx.currentTime+0.6);
+        o.start(actx.currentTime);o.stop(actx.currentTime+0.6);
+      }catch(e){}
+    }
+  }
+  setTimeout(tick,700);
+});
+
+// ══════════════════════════════════════════════════
+// MEME GENERATOR
+var memeStyle='funny and cute';
+var memeEmojis=['🤣','😂','💀','🫠','😭','🤡','🙈','😤','🥴','😈','🔥','👀','😵','🤤','😎'];
+
+document.querySelectorAll('.meme-style-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.meme-style-btn').forEach(function(b){b.classList.remove('sel');});
+    this.classList.add('sel');
+    memeStyle=this.getAttribute('data-style');
+  });
+});
+
+document.getElementById('memeFab').addEventListener('click',function(){closeLPanel();document.getElementById('memeCaption').textContent='Pehle style choose karo... 😎';document.getElementById('memeEmoji').textContent='🤣';document.getElementById('memePg').classList.add('on');});
+document.getElementById('memeX').addEventListener('click',function(){document.getElementById('memePg').classList.remove('on');});
+document.getElementById('memeGenBtn').addEventListener('click',generateMeme);
+
+async function generateMeme(){
+  var capEl=document.getElementById('memeCaption');
+  capEl.classList.add('fd');
+  document.getElementById('memeEmoji').textContent='⏳';
+  try{
+    var resp = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:120,
+        messages:[{role:'user',content:'Generate ONE funny meme caption about a boy named Aayu and his girlfriend Rashi. Style: "'+memeStyle+'". Write in Hinglish (Hindi+English mix). Make it short, punchy, and relatable. Max 3 lines. Include 1-2 relevant emojis. Be creative and original.'}]
+      })
+    });
+    var data = await resp.json();
+    var text = data.content && data.content[0] ? data.content[0].text : 'Rashi: "Tum samjhate nahi ho!"\nAayu: "Haan... par pyaar karte hain!" 😂❤️';
+    var em=memeEmojis[Math.floor(Math.random()*memeEmojis.length)];
+    document.getElementById('memeEmoji').textContent=em;
+    setTimeout(function(){capEl.textContent=text;capEl.classList.remove('fd');},300);
+  }catch(e){
+    var fallbacks={'funny and cute':['Rashi: "Suno"\nAayu, already crying: "Kya hua?? Main sorry hoon!!" 😭','Aayu: "Main romantic hoon"\nAlso Aayu: *sends voice note of himself eating* 🎤😂'],
+    'romantic and sweet':['Rashi meri GPS hai — uske bina hum kho jaate hain! 💕','Rashi ke liye — chand sitare? Nahi — usse chand sitare chahiye uske liye! 🌙💫'],
+    'savage roast':['Aayu ke jokes sunke Rashi: 💀\nAayu: "Hasa, na?" 😅','Rashi\'s patience level: 📉\nAayu\'s excuse level: 📈 😂'],
+    'desi Bhojpuri style':['Aayu Rashi ke bina: रोटी बिना नमक जैसा! 😭🫓','Pyaar mein Bhojpuri: "Tu hamar jaan baanis!" Google Translate: "Translation unavailable" 💀']};
+    var arr=fallbacks[memeStyle]||fallbacks['funny and cute'];
+    var text=arr[Math.floor(Math.random()*arr.length)];
+    var em=memeEmojis[Math.floor(Math.random()*memeEmojis.length)];
+    document.getElementById('memeEmoji').textContent=em;
+    setTimeout(function(){capEl.textContent=text;capEl.classList.remove('fd');},300);
+  }
+}
+
+// ══════════════════════════════════════════════════
+// SPIN WHEEL
+var spAngle=0,spOn=false;
+document.getElementById('spinFab').addEventListener('click',function(){
+  closeLPanel();
+  document.getElementById('spinPg').classList.add('on');drawW(spAngle);
+});
+document.getElementById('spinX').addEventListener('click',function(){document.getElementById('spinPg').classList.remove('on');});
+document.getElementById('spBtn').addEventListener('click',function(){
+  if(spOn)return;spOn=true;this.disabled=true;document.getElementById('spRes').textContent='';
+  var extra=(5+Math.floor(Math.random()*5))*Math.PI*2;
+  var target=spAngle+extra+Math.random()*Math.PI*2;
+  var dur=3500,start=null,from=spAngle;
+  function ease(t){return 1-Math.pow(1-t,4);}
+  (function step(ts){if(!start)start=ts;var p=Math.min((ts-start)/dur,1);spAngle=from+(target-from)*ease(p);drawW(spAngle);if(p<1){requestAnimationFrame(step);}else{spOn=false;document.getElementById('spBtn').disabled=false;showSpinRes();};})(performance.now());
+});
+function drawW(rot){
+  var cv=document.getElementById('wCanvas');if(!cv)return;
+  var ctx=cv.getContext('2d'),n=spinSegs.length,arc=Math.PI*2/n,cx=135,cy=135,r=128;
+  ctx.clearRect(0,0,270,270);
+  for(var i=0;i<n;i++){
+    var s=rot+arc*i-Math.PI/2,e=s+arc;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,s,e);ctx.closePath();ctx.fillStyle=spinSegs[i].c;ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,.3)';ctx.lineWidth=2;ctx.stroke();
+    ctx.save();ctx.translate(cx,cy);ctx.rotate(s+arc/2);ctx.textAlign='right';ctx.fillStyle='#fff';
+    ctx.font='bold 11px sans-serif';ctx.shadowColor='rgba(0,0,0,.5)';ctx.shadowBlur=3;
+    ctx.fillText(spinSegs[i].l,r-8,4);ctx.restore();
+  }
+  ctx.beginPath();ctx.arc(cx,cy,18,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();
+  ctx.beginPath();ctx.arc(cx,cy,12,0,Math.PI*2);ctx.fillStyle='#e8395a';ctx.fill();
+}
+function showSpinRes(){
+  var n=spinSegs.length,arc=Math.PI*2/n;
+  var norm=(((-spAngle+Math.PI/2)%(Math.PI*2))+Math.PI*2)%(Math.PI*2);
+  var idx=Math.floor(norm/arc)%n;
+  document.getElementById('spRes').innerHTML='🎉 <span style="color:'+spinSegs[idx].c+';font-weight:700">'+spinSegs[idx].l+'</span><br><span style="font-size:.9rem;color:rgba(249,168,212,.7)">Rashi ke liye Aayu ka pyaar! 💕</span>';
+}
+// ══════════════════════════════════════════════════
+// MOOD LOCK SYSTEM
+var GUSSA_CODE = '0001';
+var SAD_CODE   = '0002';
+var HASAO_CODE = '0003';
+
+var moodInputs = { gussa:'', sad:'', hasao:'' };
+
+// Open mood pages
+document.getElementById('gussaFab').addEventListener('click', function(){ closeLPanel(); openMoodPage('gussa'); });
+document.getElementById('sadFab').addEventListener('click',   function(){ closeLPanel(); openMoodPage('sad'); });
+document.getElementById('hasaoFab').addEventListener('click', function(){ closeLPanel(); openMoodPage('hasao'); });
+
+// Close buttons
+document.getElementById('gussaX').addEventListener('click', function(){ document.getElementById('gussaPg').classList.remove('on'); });
+document.getElementById('sadX').addEventListener('click',   function(){ document.getElementById('sadPg').classList.remove('on'); });
+document.getElementById('hasaoX').addEventListener('click', function(){ document.getElementById('hasaoPg').classList.remove('on'); });
+
+// Reset (lock again) buttons
+document.getElementById('gussaResetBtn').addEventListener('click', function(){ resetMood('gussa'); });
+document.getElementById('sadResetBtn').addEventListener('click',   function(){ resetMood('sad'); });
+document.getElementById('hasaoResetBtn').addEventListener('click', function(){ resetMood('hasao'); });
+
+function openMoodPage(mode){
+  resetMood(mode);
+  document.getElementById(mode+'Pg').classList.add('on');
+}
+
+function resetMood(mode){
+  moodInputs[mode] = '';
+  updMoodDots(mode);
+  document.getElementById(mode+'LockWrap').style.display = 'flex';
+  document.getElementById(mode+'LockIcon').textContent = '🔒';
+  document.getElementById(mode+'Content').classList.remove('on');
+}
+
+// Keypad clicks
+document.querySelectorAll('.mk').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var mode = this.getAttribute('data-mode');
+    var v    = this.getAttribute('data-v');
+    if(v === 'del')      { moodInputs[mode] = moodInputs[mode].slice(0,-1); }
+    else if(v === 'clr') { moodInputs[mode] = ''; }
+    else if(moodInputs[mode].length < 4){ moodInputs[mode] += v; }
+    updMoodDots(mode);
+    if(moodInputs[mode].length === 4) setTimeout(function(){ checkMoodCode(mode); }, 200);
+  });
+});
+
+function updMoodDots(mode){
+  var prefix = mode === 'gussa' ? 'gd' : mode === 'sad' ? 'ssd' : 'hd';
+  for(var i=0;i<4;i++){
+    var d = document.getElementById(prefix+i);
+    if(d) d.className = 'md' + (i < moodInputs[mode].length ? ' fl' : '');
+  }
+}
+
+function checkMoodCode(mode){
+  var codes = { gussa: GUSSA_CODE, sad: SAD_CODE, hasao: HASAO_CODE };
+  if(moodInputs[mode] === codes[mode]){
+    // Correct!
+    document.getElementById(mode+'LockIcon').textContent = '🔓';
+    setTimeout(function(){
+      document.getElementById(mode+'LockWrap').style.display = 'none';
+      document.getElementById(mode+'Content').classList.add('on');
+    }, 400);
+  } else {
+    // Wrong — shake and reset
+    var prefix = mode === 'gussa' ? 'gd' : mode === 'sad' ? 'ssd' : 'hd';
+    for(var i=0;i<4;i++){
+      var d = document.getElementById(prefix+i);
+      if(d){ d.className='md wr'; }
+    }
+    var dots = document.getElementById(mode+'Dots');
+    dots.style.animation = 'shake .4s ease';
+    setTimeout(function(){
+      moodInputs[mode] = '';
+      updMoodDots(mode);
+      dots.style.animation = '';
+    }, 460);
+  }
+}
+</script>
+</body>
+</html>
